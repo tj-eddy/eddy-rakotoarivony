@@ -185,17 +185,19 @@ add_action( 'add_meta_boxes', 'eddy_add_service_meta_box' );
 function eddy_render_service_meta_box( $post ) {
     wp_nonce_field( 'eddy_save_service_meta', 'eddy_service_nonce' );
 
-    $icon  = get_post_meta( $post->ID, '_service_icon',  true );
-    $color = get_post_meta( $post->ID, '_service_color', true );
+    $icon        = get_post_meta( $post->ID, '_service_icon',         true );
+    $color       = get_post_meta( $post->ID, '_service_color',        true );
+    $badge_color = get_post_meta( $post->ID, '_service_badge_color',  true );
+    $techs       = get_post_meta( $post->ID, '_service_technologies', true );
+    $features    = get_post_meta( $post->ID, '_service_features',     true );
     ?>
     <table class="form-table">
         <tr>
             <th><label for="service_icon"><?php esc_html_e( 'Icône (emoji)', 'eddy-portfolio' ); ?></label></th>
             <td>
                 <input type="text" id="service_icon" name="service_icon"
-                       value="<?php echo esc_attr( $icon ); ?>" class="regular-text"
-                       placeholder="🛒">
-                <p class="description"><?php esc_html_e( 'Emoji ou texte affiché dans la card du service.', 'eddy-portfolio' ); ?></p>
+                       value="<?php echo esc_attr( $icon ); ?>" class="regular-text" placeholder="🛒">
+                <p class="description"><?php esc_html_e( 'Emoji affiché dans la card et la page détail.', 'eddy-portfolio' ); ?></p>
             </td>
         </tr>
         <tr>
@@ -205,21 +207,54 @@ function eddy_render_service_meta_box( $post ) {
                     <?php
                     $colors = array(
                         'bg-teal-50'   => 'Teal clair (défaut)',
-                        'bg-blue-50'   => 'Bleu clair',
-                        'bg-purple-50' => 'Violet clair',
-                        'bg-orange-50' => 'Orange clair',
-                        'bg-green-50'  => 'Vert clair',
+                        'bg-blue-50'   => 'Bleu clair (PrestaShop)',
+                        'bg-purple-50' => 'Violet clair (WordPress)',
+                        'bg-orange-50' => 'Orange clair (Symfony)',
+                        'bg-green-50'  => 'Vert clair (Maintenance)',
                     );
-                    foreach ( $colors as $val => $label ) {
-                        printf(
-                            '<option value="%s"%s>%s</option>',
-                            esc_attr( $val ),
-                            selected( $color, $val, false ),
-                            esc_html( $label )
-                        );
+                    foreach ( $colors as $val => $lbl ) {
+                        printf( '<option value="%s"%s>%s</option>',
+                            esc_attr( $val ), selected( $color, $val, false ), esc_html( $lbl ) );
                     }
                     ?>
                 </select>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="service_badge_color"><?php esc_html_e( 'Couleur badge (page détail)', 'eddy-portfolio' ); ?></label></th>
+            <td>
+                <select id="service_badge_color" name="service_badge_color">
+                    <?php
+                    $badge_colors = array(
+                        'bg-teal-100 text-teal-700'     => 'Teal (défaut)',
+                        'bg-blue-100 text-blue-700'     => 'Bleu (PrestaShop)',
+                        'bg-purple-100 text-purple-700' => 'Violet (WordPress)',
+                        'bg-orange-100 text-orange-700' => 'Orange (Symfony)',
+                        'bg-green-100 text-green-700'   => 'Vert (Maintenance)',
+                    );
+                    foreach ( $badge_colors as $val => $lbl ) {
+                        printf( '<option value="%s"%s>%s</option>',
+                            esc_attr( $val ), selected( $badge_color, $val, false ), esc_html( $lbl ) );
+                    }
+                    ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="service_technologies"><?php esc_html_e( 'Technologies', 'eddy-portfolio' ); ?></label></th>
+            <td>
+                <input type="text" id="service_technologies" name="service_technologies"
+                       value="<?php echo esc_attr( $techs ); ?>" class="large-text"
+                       placeholder="PrestaShop 8, PHP 8.x, MySQL, Git">
+                <p class="description"><?php esc_html_e( 'Séparées par des virgules. Affiché en badges sur la page détail.', 'eddy-portfolio' ); ?></p>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="service_features"><?php esc_html_e( 'Prestations (une par ligne)', 'eddy-portfolio' ); ?></label></th>
+            <td>
+                <textarea id="service_features" name="service_features" rows="6" class="large-text"
+                          placeholder="🏗️ Création de boutique complète&#10;🧩 Modules sur mesure&#10;🚀 Migration & mise à jour"><?php echo esc_textarea( $features ); ?></textarea>
+                <p class="description"><?php esc_html_e( 'Format : "emoji Titre" — une prestation par ligne. Affiché en grille sur la page détail.', 'eddy-portfolio' ); ?></p>
             </td>
         </tr>
     </table>
@@ -239,11 +274,19 @@ function eddy_save_service_meta( $post_id ) {
     if ( ! current_user_can( 'edit_post', $post_id ) ) return;
 
     // Sauvegarde
-    if ( isset( $_POST['service_icon'] ) ) {
-        update_post_meta( $post_id, '_service_icon', sanitize_text_field( wp_unslash( $_POST['service_icon'] ) ) );
+    $fields = array(
+        'service_icon'         => '_service_icon',
+        'service_color'        => '_service_color',
+        'service_badge_color'  => '_service_badge_color',
+        'service_technologies' => '_service_technologies',
+    );
+    foreach ( $fields as $post_key => $meta_key ) {
+        if ( isset( $_POST[ $post_key ] ) ) {
+            update_post_meta( $post_id, $meta_key, sanitize_text_field( wp_unslash( $_POST[ $post_key ] ) ) );
+        }
     }
-    if ( isset( $_POST['service_color'] ) ) {
-        update_post_meta( $post_id, '_service_color', sanitize_text_field( wp_unslash( $_POST['service_color'] ) ) );
+    if ( isset( $_POST['service_features'] ) ) {
+        update_post_meta( $post_id, '_service_features', sanitize_textarea_field( wp_unslash( $_POST['service_features'] ) ) );
     }
 }
 add_action( 'save_post_services', 'eddy_save_service_meta' );
