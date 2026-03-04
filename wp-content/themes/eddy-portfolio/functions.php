@@ -99,19 +99,11 @@ add_action( 'after_setup_theme', 'eddy_setup' );
 function eddy_enqueue_assets() {
 
     // --- Styles ---
-    // Tailwind CSS via CDN (pour la production, préférer une compilation locale)
-    wp_enqueue_style(
-        'tailwindcss',
-        'https://cdn.tailwindcss.com',
-        array(),
-        null
-    );
-
-    // Feuille de style personnalisée du thème
+    // Feuille de style personnalisée du thème (sans dépendance Tailwind qui est un script)
     wp_enqueue_style(
         'eddy-custom',
         EDDY_URI . '/assets/css/custom.css',
-        array( 'tailwindcss' ),
+        array(),
         EDDY_VERSION
     );
 
@@ -141,6 +133,16 @@ function eddy_enqueue_assets() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'eddy_enqueue_assets' );
+
+/**
+ * Injecte le script Tailwind CDN dans le <head>.
+ * cdn.tailwindcss.com est un script JS (play CDN), pas une feuille CSS —
+ * il doit être chargé via <script>, non via <link rel="stylesheet">.
+ */
+function eddy_tailwind_cdn() {
+    echo '<script src="https://cdn.tailwindcss.com"></script>' . "\n";
+}
+add_action( 'wp_head', 'eddy_tailwind_cdn', 1 );
 
 
 /* =============================================================================
