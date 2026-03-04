@@ -1,0 +1,549 @@
+/* =============================================
+   EDDY PORTFOLIO — custom.css
+   Styles complémentaires Tailwind CSS
+   Version : 1.0.0
+============================================================================= */
+
+/* =============================================================================
+   1. ANIMATIONS AU SCROLL (Intersection Observer via jQuery)
+============================================================================= */
+
+/**
+ * État initial : éléments invisibles décalés vers le bas.
+ * La classe .animated est ajoutée par main.js quand l'élément entre dans le viewport.
+ */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Délai en cascade pour les grilles (cards) */
+.animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+.animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
+.animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
+
+
+/* =============================================================================
+   2. HERO GRADIENT
+============================================================================= */
+
+.hero-gradient {
+    background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 50%, #f0fdfa 100%);
+}
+
+
+/* =============================================================================
+   3. BARRES DE COMPÉTENCES (skill bars)
+============================================================================= */
+
+/**
+ * Largeur initiale à 0. La propriété `width` est animée via jQuery (data-width).
+ */
+.skill-bar {
+    width: 0;
+    transition: width 1.2s ease-in-out;
+    border-radius: 9999px;
+    display: block;
+}
+
+
+/* =============================================================================
+   4. TECH BADGES (technologies maîtrisées)
+============================================================================= */
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #f0fdfa;
+    border: 1px solid #99f6e4;
+    color: #0f766e;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    cursor: default;
+}
+
+.tech-badge:hover {
+    background-color: #0d9488;
+    color: white;
+    border-color: #0d9488;
+}
+
+
+/* =============================================================================
+   5. CARDS DE SERVICE
+============================================================================= */
+
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+}
+
+
+/* =============================================================================
+   6. TIMELINE (parcours page À propos)
+============================================================================= */
+
+.timeline-item {
+    position: relative;
+    padding-left: 2rem;
+}
+
+/* Point de la timeline */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #0d9488;
+    border: 3px solid #ccfbf1;
+    z-index: 1;
+}
+
+/* Ligne verticale entre les points */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 18px;
+    width: 2px;
+    height: calc(100% + 16px);
+    background-color: #99f6e4;
+}
+
+.timeline-item:last-child::after {
+    display: none;
+}
+
+
+/* =============================================================================
+   7. BREADCRUMB
+============================================================================= */
+
+.breadcrumb a {
+    color: #0d9488;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
+
+
+/* =============================================================================
+   8. TYPOGRAPHIE ARTICLE (corps des articles .article-body)
+============================================================================= */
+
+.article-body h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 2rem 0 1rem;
+}
+
+.article-body h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 1.5rem 0 0.75rem;
+}
+
+.article-body p {
+    color: #4b5563;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.article-body ul,
+.article-body ol {
+    padding-left: 1.5rem;
+    color: #4b5563;
+    margin-bottom: 1rem;
+}
+
+.article-body ul {
+    list-style-type: disc;
+}
+
+.article-body ol {
+    list-style-type: decimal;
+}
+
+.article-body li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+}
+
+.article-body a {
+    color: #0d9488;
+    text-decoration: underline;
+}
+
+.article-body a:hover {
+    color: #0f766e;
+}
+
+.article-body code {
+    background-color: #f0fdfa;
+    border: 1px solid #99f6e4;
+    color: #0f766e;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.875em;
+    font-family: 'Fira Code', 'Consolas', monospace;
+}
+
+.article-body pre {
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.article-body pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+}
+
+.article-body blockquote {
+    border-left: 4px solid #0d9488;
+    background-color: #f0fdfa;
+    padding: 1rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+    color: #374151;
+    font-style: italic;
+}
+
+.article-body blockquote p {
+    margin-bottom: 0;
+}
+
+.article-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.article-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.875rem;
+}
+
+.article-body th,
+.article-body td {
+    border: 1px solid #e5e7eb;
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+.article-body th {
+    background-color: #f0fdfa;
+    font-weight: 600;
+    color: #0f766e;
+}
+
+
+/* =============================================================================
+   9. FORMULAIRE DE CONTACT
+============================================================================= */
+
+.form-field:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+}
+
+
+/* =============================================================================
+   10. NAVBAR DROPDOWN (menu Services)
+============================================================================= */
+
+#services-menu {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform-origin: top left;
+}
+
+/* Menu principal WordPress — surcharge des styles de liste */
+.eddy-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.eddy-nav-list > li {
+    position: relative;
+}
+
+.eddy-nav-list > li > a {
+    font-weight: 500;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 0.9375rem;
+}
+
+.eddy-nav-list > li > a:hover,
+.eddy-nav-list > li.current-menu-item > a,
+.eddy-nav-list > li.current-menu-ancestor > a {
+    color: #0d9488;
+}
+
+.eddy-nav-list > li.current-menu-item > a {
+    font-weight: 600;
+    border-bottom: 2px solid #0d9488;
+    padding-bottom: 2px;
+}
+
+/* Sous-menu dropdown */
+.eddy-nav-list .sub-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 13rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    list-style: none;
+    padding: 6px 0;
+    z-index: 100;
+}
+
+.eddy-nav-list > li:hover > .sub-menu {
+    display: block;
+}
+
+.eddy-nav-list .sub-menu li a {
+    display: block;
+    padding: 8px 16px;
+    color: #374151;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.eddy-nav-list .sub-menu li a:hover {
+    background-color: #f0fdfa;
+    color: #0d9488;
+}
+
+/* Menu mobile */
+.eddy-mobile-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.eddy-mobile-nav > li > a {
+    display: block;
+    padding: 8px 0;
+    color: #374151;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.eddy-mobile-nav > li > a:hover,
+.eddy-mobile-nav > li.current-menu-item > a {
+    color: #0d9488;
+}
+
+.eddy-mobile-nav .sub-menu {
+    list-style: none;
+    padding: 4px 0 4px 1rem;
+}
+
+.eddy-mobile-nav .sub-menu li a {
+    display: block;
+    padding: 4px 0;
+    color: #6b7280;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.eddy-mobile-nav .sub-menu li a:hover {
+    color: #0d9488;
+}
+
+
+/* =============================================================================
+   11. PAGINATION WORDPRESS (the_posts_pagination)
+============================================================================= */
+
+.eddy-pagination,
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.nav-links .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.nav-links .page-numbers:hover {
+    background-color: #f0fdfa;
+    border-color: #0d9488;
+    color: #0d9488;
+}
+
+.nav-links .page-numbers.current {
+    background-color: #0d9488;
+    border-color: #0d9488;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.nav-links .prev,
+.nav-links .next {
+    padding: 0 16px;
+    border-color: #99f6e4;
+    color: #0d9488;
+}
+
+.nav-links .prev:hover,
+.nav-links .next:hover {
+    background-color: #0d9488;
+    color: white;
+}
+
+
+/* =============================================================================
+   12. MESSAGE DE SUCCÈS FORMULAIRE
+============================================================================= */
+
+#success-message {
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* =============================================================================
+   13. LOGO CUSTOM WORDPRESS
+============================================================================= */
+
+.custom-logo-link {
+    display: inline-block;
+}
+
+.custom-logo {
+    max-height: 50px;
+    width: auto;
+}
+
+
+/* =============================================================================
+   14. SMOOTH SCROLL GLOBAL
+============================================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* =============================================================================
+   15. ACCESSIBILITÉ — Focus visible
+============================================================================= */
+
+:focus-visible {
+    outline: 3px solid #0d9488;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.skip-link:focus {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    z-index: 9999;
+    padding: 8px 16px;
+    background: #0d9488;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+/* =============================================================================
+   16. RESPONSIVE
+============================================================================= */
+
+@media (max-width: 768px) {
+    .hero-gradient {
+        padding: 3rem 1rem;
+    }
+
+    .article-body h2 {
+        font-size: 1.25rem;
+    }
+
+    .eddy-nav-list {
+        display: none; /* Caché — le menu mobile jQuery le remplace */
+    }
+}
