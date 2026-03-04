@@ -24,50 +24,6 @@
 
 <body <?php body_class(); ?>>
 
-<?php
-// Add header styles inline for the header section only
-// (These are minimal styles needed for the header)
-?>
-<style>
-    #header {
-        padding: 32px 24px;
-        text-align: center;
-        background: linear-gradient(180deg, rgba(127, 255, 212, 0.04) 0%, transparent 100%);
-        border-bottom: 1px solid rgba(127, 255, 212, 0.12);
-    }
-
-    #headerimg {
-        max-width: 720px;
-        margin: 0 auto;
-    }
-
-    #header h1 {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        font-size: 1.6rem;
-        font-weight: 600;
-        margin: 0 0 10px;
-        letter-spacing: -0.02em;
-    }
-
-    #header h1 a {
-        color: #fff;
-        text-decoration: none;
-        transition: color 0.2s;
-    }
-
-    #header h1 a:hover {
-        color: var(--primary-color);
-        text-shadow: 0 0 20px rgba(127, 255, 212, 0.4);
-    }
-
-    #header .description {
-        color: var(--text-muted);
-        font-size: 0.9rem;
-        margin: 0;
-        font-weight: 400;
-    }
-</style>
-
 <div id="header" role="banner">
     <div id="headerimg">
         <h1><a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?></a></h1>

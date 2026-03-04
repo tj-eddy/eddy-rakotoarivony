@@ -3,12 +3,6 @@
 <!-- Hero Section -->
 <section id="hero">
     <div class="hero-bg"></div>
-    <div class="hero-blur-overlay"></div>
-    <div class="particles"></div>
-    <div class="floating-shape shape-1"></div>
-    <div class="floating-shape shape-2"></div>
-    <div class="floating-shape shape-3"></div>
-    <div class="floating-shape shape-4"></div>
     
     <div class="hero-content">
         <div class="hero-profile">
@@ -19,7 +13,7 @@
             <span class="word-2">Rakotoarivony</span>
         </h1>
         <p class="hero-subtitle">
-            <span class="typing-text">Expert PrestaShop · WordPress · Symfony</span>
+            Expert PrestaShop · WordPress · Symfony
         </p>
         <div class="hero-cta">
             <a href="#services" class="btn btn-primary">Voir mes services</a>
@@ -33,31 +27,29 @@
     
     <div class="scroll-indicator">
         <span></span>
-        <span></span>
-        <span></span>
     </div>
 </section>
 
 <!-- Services Section -->
 <section id="services">
-    <h2 class="section-title reveal">Mes Compétences</h2>
+    <h2 class="section-title">Mes Compétences</h2>
     <div class="services-grid">
-        <div class="service-card reveal">
+        <div class="service-card">
             <i class="fa-brands fa-wordpress service-icon"></i>
             <h3 class="service-title">WordPress</h3>
             <p class="service-desc">Création de thèmes sur mesure, développement de plugins, et optimisation de sites vitrines et E-commerce sous WooCommerce.</p>
         </div>
-        <div class="service-card reveal">
+        <div class="service-card">
             <i class="fa-brands fa-php service-icon"></i>
             <h3 class="service-title">PrestaShop</h3>
             <p class="service-desc">Spécialiste de la création de boutiques en ligne performantes, développement de modules et refonte d'interfaces PrestaShop.</p>
         </div>
-        <div class="service-card reveal">
+        <div class="service-card">
             <i class="fa-brands fa-symfony service-icon"></i>
             <h3 class="service-title">Symfony</h3>
             <p class="service-desc">Développement d'applications web complexes et sur mesure en utilisant la robustesse du framework Symfony et PHP.</p>
         </div>
-        <div class="service-card reveal">
+        <div class="service-card">
             <i class="fa-solid fa-code-pull-request service-icon"></i>
             <h3 class="service-title">Maintenance</h3>
             <p class="service-desc">Mises à jour sécuritaires, correction de bugs, optimisation des performances (SEO & vitesse) pour garantir la pérennité.</p>
@@ -67,7 +59,7 @@
 
 <!-- Actualités Section -->
 <section id="actualites">
-    <h2 class="section-title reveal">Dernières Actualités</h2>
+    <h2 class="section-title">Dernières Actualités</h2>
     <div class="news-grid">
         <?php
         // Fetch WordPress posts
@@ -85,7 +77,7 @@
                 $categories = get_the_category();
                 $category_name = !empty($categories) ? $categories[0]->name : 'Article';
         ?>
-        <article class="news-card reveal">
+        <article class="news-card">
             <div class="news-image">
                 <span class="news-category"><?php echo esc_html($category_name); ?></span>
                 <?php if (has_post_thumbnail()) : ?>
@@ -120,7 +112,7 @@
         else :
         // Fallback if no posts exist
         ?>
-        <article class="news-card reveal">
+        <article class="news-card">
             <div class="news-image">
                 <span class="news-category">E-commerce</span>
                 <i class="fa-solid fa-cart-shopping"></i>
@@ -139,7 +131,7 @@
                 <a href="#" class="read-more">Lire plus <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </article>
-        <article class="news-card reveal">
+        <article class="news-card">
             <div class="news-image">
                 <span class="news-category">Technique</span>
                 <i class="fa-brands fa-wordpress"></i>
@@ -158,7 +150,7 @@
                 <a href="#" class="read-more">Lire plus <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </article>
-        <article class="news-card reveal">
+        <article class="news-card">
             <div class="news-image">
                 <span class="news-category">SEO</span>
                 <i class="fa-solid fa-magnifying-glass-chart"></i>
@@ -183,8 +175,8 @@
 
 <!-- Contact Section -->
 <section id="contact">
-    <h2 class="section-title reveal">Me Contacter</h2>
-    <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('Message envoyé !');">
+    <h2 class="section-title">Me Contacter</h2>
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message envoyé !');">
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Votre Nom" required>
         </div>
@@ -197,7 +189,7 @@
         <button type="submit" class="btn">Envoyer le message</button>
     </form>
     
-    <div class="contact-socials reveal">
+    <div class="contact-socials">
         <a href="#" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <a href="#" class="social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="#" class="social-link" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
@@ -215,7 +207,7 @@
 <div class="overlay" id="overlay"></div>
 <nav class="sidebar" id="sidebar">
     <ul class="nav-links">
-        <li class="nav-item"><a href="#hero" class="nav-link active">Accueil</a></li>
+        <li class="nav-item"><a href="#hero" class="nav-link">Accueil</a></li>
         <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
         <li class="nav-item"><a href="#actualites" class="nav-link">Actualités</a></li>
         <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
