@@ -1,0 +1,113 @@
+/*
+Theme Name: Eddy
+Theme URI: https://eddy-rakotoarivony.com
+Author: Eddy Rakotoarivony
+Author URI: https://eddy-rakotoarivony.com
+Description: Portfolio theme pour développeur freelance spécialisé en PrestaShop, WordPress, Symfony et Maintenance de sites web. Thème sombre avec accents aquamarine.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: eddy
+Tags: portfolio, one-page, dark, aquamarine, responsive
+*/
+
+/* WordPress Core Styles */
+.alignleft {
+    display: inline;
+    float: left;
+    margin-right: 1.5em;
+}
+
+.alignright {
+    display: inline;
+    float: right;
+    margin-left: 1.5em;
+}
+
+.aligncenter {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-caption {
+    margin-bottom: 1.5em;
+    max-width: 100%;
+}
+
+.wp-caption img {
+    display: block;
+    margin: 0 auto;
+}
+
+.wp-caption-text {
+    text-align: center;
+    font-size: 0.9em;
+    color: #8892b0;
+}
+
+.gallery-caption {
+    text-align: center;
+    font-size: 0.9em;
+    color: #8892b0;
+}
+
+.bypostauthor {
+    color: #7FFFD4;
+}
+
+/* Screen Reader Text */
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+.screen-reader-text:focus {
+    background-color: #0f1115;
+    border-radius: 3px;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: #7FFFD4;
+    display: block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
+
+/* Clearfix */
+.clear::before,
+.clear::after,
+.entry-content::before,
+.entry-content::after,
+.comment-content::before,
+.comment-content::after,
+.site-header::before,
+.site-header::after,
+.site-content::before,
+.site-content::after,
+.site-footer::before,
+.site-footer::after {
+    content: "";
+    display: table;
+}
+
+.clear::after,
+.entry-content::after,
+.comment-content::after,
+.site-header::after,
+.site-content::after,
+.site-footer::after {
+    clear: both;
+}
