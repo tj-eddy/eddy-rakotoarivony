@@ -52,3 +52,14 @@ add_action('widgets_init', 'eddy_widgets_init');
 function get_views() {
     return rand(50, 500);
 }
+
+// Get author initials
+function get_the_author_initials() {
+    $author_name = get_the_author();
+    $words = explode(' ', $author_name);
+    $initials = '';
+    foreach ($words as $word) {
+        $initials .= strtoupper(substr($word, 0, 1));
+    }
+    return substr($initials, 0, 2);
+}

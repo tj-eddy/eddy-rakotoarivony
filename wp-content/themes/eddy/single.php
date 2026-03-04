@@ -8,8 +8,8 @@
         --bg-darker: #07080a;
         --text-light: #e0e0e0;
         --text-muted: #8892b0;
-        --font-display: 'Playfair Display', serif;
-        --font-body: 'Outfit', sans-serif;
+        --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --font-body: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
     * {
@@ -22,278 +22,388 @@
         font-family: var(--font-body);
         background-color: var(--bg-dark);
         color: var(--text-light);
-        line-height: 1.8;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Header */
-    .single-header {
-        padding: 150px 20px 60px;
+    /* Background */
+    .site-background {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        z-index: -1;
+        background: 
+            radial-gradient(ellipse at 15% 15%, rgba(127, 255, 212, 0.06) 0%, transparent 50%),
+            radial-gradient(ellipse at 85% 85%, rgba(69, 184, 148, 0.04) 0%, transparent 50%),
+            var(--bg-dark);
+    }
+
+    /* Back Button */
+    .back-btn {
+        position: fixed;
+        top: 24px;
+        left: 24px;
+        z-index: 1000;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(15, 17, 21, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(127, 255, 212, 0.15);
+        padding: 10px 20px;
+        border-radius: 24px;
+        color: var(--text-light);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: all 0.25s ease;
+    }
+
+    .back-btn:hover {
+        background: var(--primary-color);
+        color: var(--bg-dark);
+        transform: translateX(-3px);
+    }
+
+    .back-btn i {
+        font-size: 0.75rem;
+    }
+
+    /* Main Container */
+    .blog-container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 100px 24px 80px;
+    }
+
+    /* Article Header */
+    .article-header {
         text-align: center;
-        position: relative;
-        background: radial-gradient(circle at center, #1a2322 0%, var(--bg-darker) 100%);
+        margin-bottom: 48px;
     }
 
-    .single-header::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background-image: 
-            radial-gradient(rgba(127, 255, 212, 0.1) 1px, transparent 1px);
-        background-size: 50px 50px;
-        animation: moveBackground 20s linear infinite;
-    }
-
-    @keyframes moveBackground {
-        from { background-position: 0 0; }
-        to { background-position: 100px 100px; }
-    }
-
-    .single-category {
+    .article-category {
         display: inline-block;
         background: var(--primary-color);
         color: var(--bg-dark);
-        padding: 8px 20px;
-        border-radius: 25px;
-        font-size: 0.8rem;
-        font-weight: bold;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 1.5px;
         margin-bottom: 20px;
-        position: relative;
     }
 
-    .single-title {
+    .article-title {
         font-family: var(--font-display);
-        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 600;
         color: #fff;
-        max-width: 900px;
-        margin: 0 auto 30px;
-        line-height: 1.3;
-        position: relative;
+        line-height: 1.25;
+        margin: 0 0 24px;
+        letter-spacing: -0.02em;
     }
 
-    .single-meta {
+    .article-meta {
         display: flex;
         justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
         color: var(--text-muted);
-        font-size: 0.9rem;
-        position: relative;
+        font-size: 0.85rem;
     }
 
-    .single-meta span {
+    .article-meta-item {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
     }
 
-    .single-meta i {
+    .article-meta i {
         color: var(--primary-color);
+        font-size: 0.8rem;
+    }
+
+    .article-author-img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--primary-color);
     }
 
     /* Featured Image */
-    .featured-image-container {
-        max-width: 1000px;
-        margin: 0 auto 50px;
-        padding: 0 20px;
+    .article-featured-image {
+        margin: 0 -24px 48px;
+        border-radius: 0;
+        overflow: hidden;
     }
 
-    .featured-image {
-        width: 100%;
-        border-radius: 15px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    }
-
-    .featured-image img {
+    .article-featured-image img {
         width: 100%;
         height: auto;
         display: block;
-        border-radius: 15px;
     }
 
-    /* Content */
-    .single-content {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 0 20px 100px;
+    /* Article Content */
+    .article-content {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #d8d8d8;
     }
 
-    .entry-content {
-        font-size: 1.1rem;
-        line-height: 1.9;
+    .article-content p {
+        margin: 0 0 1.5em;
     }
 
-    .entry-content p {
-        margin-bottom: 1.5em;
-    }
-
-    .entry-content h2, 
-    .entry-content h3,
-    .entry-content h4 {
+    .article-content h2 {
         font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 600;
         color: #fff;
-        margin-top: 2em;
-        margin-bottom: 0.8em;
+        margin: 2em 0 0.75em;
+        letter-spacing: -0.01em;
     }
 
-    .entry-content h2 { font-size: 2rem; }
-    .entry-content h3 { font-size: 1.5rem; }
-    .entry-content h4 { font-size: 1.25rem; }
+    .article-content h3 {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #fff;
+        margin: 1.75em 0 0.6em;
+    }
 
-    .entry-content a {
+    .article-content a {
         color: var(--primary-color);
         text-decoration: none;
-        border-bottom: 1px solid transparent;
-        transition: border-color 0.3s;
+        border-bottom: 1px solid rgba(127, 255, 212, 0.3);
+        transition: border-color 0.2s;
     }
 
-    .entry-content a:hover {
+    .article-content a:hover {
         border-bottom-color: var(--primary-color);
     }
 
-    .entry-content ul,
-    .entry-content ol {
-        margin: 1.5em 0;
+    .article-content ul,
+    .article-content ol {
+        margin: 1.25em 0;
         padding-left: 1.5em;
     }
 
-    .entry-content li {
+    .article-content li {
         margin-bottom: 0.5em;
     }
 
-    .entry-content blockquote {
-        border-left: 4px solid var(--primary-color);
+    .article-content blockquote {
+        border-left: 3px solid var(--primary-color);
         margin: 2em 0;
-        padding: 1em 2em;
-        background: rgba(127, 255, 212, 0.05);
-        border-radius: 0 10px 10px 0;
+        padding: 1em 1.5em;
+        background: rgba(127, 255, 212, 0.03);
+        border-radius: 0 8px 8px 0;
         font-style: italic;
+        color: #c8c8c8;
     }
 
-    .entry-content img {
+    .article-content img {
         max-width: 100%;
         height: auto;
         margin: 1.5em 0;
-        border-radius: 10px;
+        border-radius: 8px;
     }
 
-    .entry-content code {
-        background: rgba(127, 255, 212, 0.1);
-        padding: 2px 8px;
+    .article-content code {
+        background: rgba(127, 255, 212, 0.08);
+        padding: 2px 6px;
         border-radius: 4px;
-        font-family: 'Courier New', monospace;
+        font-family: 'SF Mono', Menlo, Monaco, monospace;
+        font-size: 0.9em;
         color: var(--primary-color);
     }
 
-    .entry-content pre {
-        background: #1a1d23;
+    .article-content pre {
+        background: #14161a;
         padding: 20px;
         border-radius: 10px;
         overflow-x: auto;
         margin: 1.5em 0;
     }
 
-    .entry-content pre code {
+    .article-content pre code {
         background: none;
         padding: 0;
-    }
-
-    /* Tags */
-    .post-tags {
-        margin-top: 50px;
-        padding-top: 30px;
-        border-top: 1px solid rgba(127, 255, 212, 0.2);
-    }
-
-    .post-tags-title {
-        font-size: 1rem;
-        color: var(--text-muted);
-        margin-bottom: 15px;
-    }
-
-    .post-tag {
-        display: inline-block;
-        background: rgba(127, 255, 212, 0.1);
-        color: var(--primary-color);
-        padding: 8px 16px;
-        border-radius: 20px;
         font-size: 0.85rem;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        transition: all 0.3s;
+        line-height: 1.6;
     }
 
-    .post-tag:hover {
+    /* Article Footer */
+    .article-footer {
+        margin-top: 48px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(127, 255, 212, 0.1);
+    }
+
+    .article-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+
+    .article-tag {
+        background: rgba(127, 255, 212, 0.06);
+        color: var(--primary-color);
+        padding: 6px 14px;
+        border-radius: 18px;
+        font-size: 0.75rem;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    .article-tag:hover {
         background: var(--primary-color);
         color: var(--bg-dark);
     }
 
-    /* Navigation */
-    .post-navigation {
-        max-width: 800px;
-        margin: 0 auto 100px;
-        padding: 0 20px;
-    }
-
-    .nav-links {
+    /* Share Buttons */
+    .article-share {
         display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
     }
 
-    .nav-previous,
-    .nav-next {
+    .share-label {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+    }
+
+    .share-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .share-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.04);
+        color: var(--text-light);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+    }
+
+    .share-btn:hover {
+        background: var(--primary-color);
+        color: var(--bg-dark);
+    }
+
+    /* Author Box */
+    .author-box {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(127, 255, 212, 0.08);
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 40px;
+    }
+
+    .author-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bg-dark);
+        font-weight: 600;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+
+    .author-info {
         flex: 1;
-        min-width: 250px;
     }
 
-    .nav-previous a,
-    .nav-next a {
+    .author-name {
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 4px;
+    }
+
+    .author-bio {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    /* Post Navigation */
+    .post-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 48px;
+    }
+
+    .post-nav-link {
         display: block;
-        padding: 25px;
-        background: rgba(255,255,255,0.03);
+        padding: 20px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(127, 255, 212, 0.08);
         border-radius: 10px;
         text-decoration: none;
-        transition: all 0.3s;
-        border: 1px solid rgba(127, 255, 212, 0.1);
+        transition: all 0.25s;
     }
 
-    .nav-previous a:hover,
-    .nav-next a:hover {
-        background: rgba(127, 255, 212, 0.05);
+    .post-nav-link:hover {
         border-color: var(--primary-color);
-        transform: translateY(-5px);
+        background: rgba(127, 255, 212, 0.03);
     }
 
-    .nav-subtitle {
-        font-size: 0.8rem;
+    .post-nav-label {
+        font-size: 0.7rem;
         color: var(--primary-color);
         text-transform: uppercase;
         letter-spacing: 1px;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
 
-    .nav-title {
+    .post-nav-title {
         font-family: var(--font-display);
-        font-size: 1.1rem;
+        font-size: 0.95rem;
         color: #fff;
+        line-height: 1.4;
     }
 
     /* Comments */
     .comments-section {
-        max-width: 800px;
-        margin: 0 auto 100px;
-        padding: 0 20px;
+        max-width: 720px;
+        margin: 60px auto 0;
+        padding: 0 24px 80px;
     }
 
     .comments-title {
         font-family: var(--font-display);
-        font-size: 1.8rem;
+        font-size: 1.4rem;
+        font-weight: 600;
         color: #fff;
-        margin-bottom: 40px;
+        margin-bottom: 32px;
         text-align: center;
+    }
+
+    .comments-title::after {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 2px;
+        background: var(--primary-color);
+        margin: 16px auto 0;
     }
 
     .comment-list {
@@ -303,265 +413,184 @@
     }
 
     .comment {
-        background: rgba(255,255,255,0.03);
+        background: rgba(255,255,255,0.015);
+        border: 1px solid rgba(127, 255, 212, 0.06);
         border-radius: 10px;
-        padding: 25px;
-        margin-bottom: 20px;
+        padding: 20px;
+        margin-bottom: 16px;
     }
 
-    .comment-author {
+    .comment-header {
         display: flex;
         align-items: center;
-        gap: 15px;
-        margin-bottom: 15px;
+        gap: 12px;
+        margin-bottom: 12px;
     }
 
     .comment-avatar {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
-        background: var(--primary-color);
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--bg-dark);
-        font-weight: bold;
+        font-weight: 600;
+        font-size: 0.85rem;
     }
 
     .comment-meta {
         flex: 1;
     }
 
-    .comment-author-name {
-        font-weight: bold;
+    .comment-author {
+        font-weight: 600;
         color: #fff;
+        font-size: 0.9rem;
     }
 
     .comment-date {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         color: var(--text-muted);
     }
 
-    .comment-content {
-        color: var(--text-light);
+    .comment-body {
+        color: #c4c4c4;
+        font-size: 0.9rem;
+        line-height: 1.6;
     }
 
     /* Comment Form */
-    .comment-respond {
-        background: rgba(255,255,255,0.03);
-        border-radius: 10px;
-        padding: 30px;
-        margin-top: 40px;
+    .comment-form {
+        background: rgba(255,255,255,0.015);
+        border: 1px solid rgba(127, 255, 212, 0.08);
+        border-radius: 12px;
+        padding: 24px;
+        margin-top: 32px;
     }
 
-    .comment-form label {
-        display: block;
-        margin-bottom: 8px;
-        color: var(--text-muted);
+    .comment-form-title {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        color: #fff;
+        margin-bottom: 20px;
+    }
+
+    .comment-form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
     }
 
     .comment-form input,
     .comment-form textarea {
         width: 100%;
-        padding: 15px;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
-        color: white;
-        border-radius: 5px;
+        padding: 14px 16px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.08);
+        color: #fff;
+        border-radius: 8px;
         font-family: inherit;
-        font-size: 1rem;
-        margin-bottom: 20px;
-        transition: all 0.3s;
+        font-size: 0.9rem;
+        transition: all 0.2s;
     }
 
     .comment-form input:focus,
     .comment-form textarea:focus {
         outline: none;
         border-color: var(--primary-color);
-        box-shadow: 0 0 10px rgba(127,255,212,0.2);
+        background: rgba(255,255,255,0.05);
     }
 
-    .comment-form .submit {
+    .comment-form textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .comment-form .submit-btn {
         background: transparent;
         color: var(--primary-color);
-        border: 2px solid var(--primary-color);
-        padding: 15px 30px;
-        font-size: 1rem;
+        border: 1.5px solid var(--primary-color);
+        padding: 12px 28px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-radius: 24px;
         cursor: pointer;
-        border-radius: 5px;
-        transition: all 0.3s;
+        transition: all 0.2s;
+        margin-top: 8px;
     }
 
-    .comment-form .submit:hover {
+    .comment-form .submit-btn:hover {
         background: var(--primary-color);
         color: var(--bg-dark);
     }
 
-    /* Burger Menu */
-    .burger-btn {
-        position: fixed;
-        top: 30px;
-        right: 30px;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background: rgba(15, 17, 21, 0.8);
-        border-radius: 50%;
-        backdrop-filter: blur(5px);
-    }
-
-    .burger-line {
-        width: 20px;
-        height: 2px;
-        background-color: var(--primary-color);
-        margin: 3px 0;
-        transition: all 0.4s ease;
-    }
-
-    .burger-btn.active .line-1 { transform: translateY(8px) rotate(45deg); }
-    .burger-btn.active .line-2 { opacity: 0; }
-    .burger-btn.active .line-3 { transform: translateY(-8px) rotate(-45deg); }
-
-    .overlay {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.7);
-        z-index: 900;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.4s ease;
-    }
-
-    .overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .sidebar {
-        position: fixed;
-        top: 0; right: -350px;
-        width: 300px;
-        height: 100vh;
-        background: rgba(15, 17, 21, 0.95);
-        backdrop-filter: blur(10px);
-        border-left: 1px solid rgba(127, 255, 212, 0.1);
-        z-index: 950;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 40px;
-        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    }
-
-    .sidebar.active {
-        transform: translateX(-350px);
-    }
-
-    .nav-links-menu {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .nav-item-menu {
-        margin: 20px 0;
-    }
-
-    .nav-link-menu {
-        font-size: 1.5rem;
-        font-family: var(--font-display);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        color: #fff;
-        transition: color 0.3s;
-    }
-
-    .nav-link-menu:hover,
-    .nav-link-menu.active {
-        color: var(--primary-color);
-    }
-
-    @media screen and (max-width: 768px) {
-        .single-header {
-            padding: 120px 20px 40px;
+    /* Responsive */
+    @media (max-width: 600px) {
+        .blog-container {
+            padding: 80px 20px 60px;
         }
 
-        .single-title {
-            font-size: 1.8rem;
+        .article-meta {
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .single-meta {
-            gap: 15px;
+        .post-nav {
+            grid-template-columns: 1fr;
         }
 
-        .sidebar {
-            width: 100%;
-            right: -100%;
+        .comment-form-row {
+            grid-template-columns: 1fr;
         }
 
-        .sidebar.active {
-            transform: translateX(-100%);
-        }
-
-        .nav-links {
-            flex-direction: column;
-        }
-
-        .nav-previous,
-        .nav-next {
-            min-width: 100%;
+        .back-btn {
+            top: 16px;
+            left: 16px;
+            padding: 8px 14px;
+            font-size: 0.8rem;
         }
     }
 </style>
 
-<!-- Burger Menu Button -->
-<div class="burger-btn" id="burgerBtn">
-    <div class="burger-line line-1"></div>
-    <div class="burger-line line-2"></div>
-    <div class="burger-line line-3"></div>
-</div>
+<!-- Background -->
+<div class="site-background"></div>
 
-<!-- Overlay & Sidebar -->
-<div class="overlay" id="overlay"></div>
-<nav class="sidebar" id="sidebar">
-    <ul class="nav-links-menu">
-        <li class="nav-item-menu"><a href="<?php echo home_url('/'); ?>" class="nav-link-menu">Accueil</a></li>
-        <li class="nav-item-menu"><a href="<?php echo home_url('/#services'); ?>" class="nav-link-menu">Services</a></li>
-        <li class="nav-item-menu"><a href="<?php echo home_url('/#actualites'); ?>" class="nav-link-menu">Actualités</a></li>
-        <li class="nav-item-menu"><a href="<?php echo home_url('/#contact'); ?>" class="nav-link-menu">Contact</a></li>
-    </ul>
-</nav>
+<!-- Back Button -->
+<a href="<?php echo home_url('/#actualites'); ?>" class="back-btn">
+    <i class="fa-solid fa-arrow-left"></i> Retour
+</a>
 
-<header class="single-header">
-    <?php
-    $categories = get_the_category();
-    if (!empty($categories)) {
-        echo '<span class="single-category">' . esc_html($categories[0]->name) . '</span>';
-    }
-    ?>
-    <h1 class="single-title"><?php the_title(); ?></h1>
-    <div class="single-meta">
-        <span><i class="fa-regular fa-calendar"></i> <?php echo get_the_date(); ?></span>
-        <span><i class="fa-regular fa-user"></i> <?php the_author(); ?></span>
-        <span><i class="fa-regular fa-comment"></i> <?php comments_number('0 commentaire', '1 commentaire', '% commentaires'); ?></span>
-    </div>
-</header>
+<!-- Article -->
+<article class="blog-container">
+    <header class="article-header">
+        <?php
+        $categories = get_the_category();
+        if (!empty($categories)) {
+            echo '<span class="article-category">' . esc_html($categories[0]->name) . '</span>';
+        }
+        ?>
+        <h1 class="article-title"><?php the_title(); ?></h1>
+        <div class="article-meta">
+            <?php
+            $author_id = get_the_author_meta('ID');
+            ?>
+            <img src="<?php echo get_avatar_url($author_id, array('size' => 64)); ?>" alt="<?php the_author(); ?>" class="article-author-img">
+            <span class="article-meta-item"><i class="fa-regular fa-user"></i> <?php the_author(); ?></span>
+            <span class="article-meta-item"><i class="fa-regular fa-calendar"></i> <?php echo get_the_date(); ?></span>
+            <span class="article-meta-item"><i class="fa-regular fa-comment"></i> <?php comments_number('0', '1', '%'); ?></span>
+        </div>
+    </header>
 
-<?php if (has_post_thumbnail()) : ?>
-<div class="featured-image-container">
-    <div class="featured-image">
+    <?php if (has_post_thumbnail()) : ?>
+    <div class="article-featured-image">
         <?php the_post_thumbnail('large', array('alt' => get_the_title())); ?>
     </div>
-</div>
-<?php endif; ?>
+    <?php endif; ?>
 
-<article class="single-content">
-    <div class="entry-content">
+    <div class="article-content">
         <?php
         while (have_posts()) :
             the_post();
@@ -570,64 +599,73 @@
         ?>
     </div>
 
-    <?php
-    $tags = get_the_tags();
-    if ($tags) :
-    ?>
-    <div class="post-tags">
-        <div class="post-tags-title">Tags:</div>
-        <?php foreach ($tags as $tag) : ?>
-            <a href="<?php echo get_tag_link($tag->term_id); ?>" class="post-tag"><?php echo $tag->name; ?></a>
-        <?php endforeach; ?>
+    <footer class="article-footer">
+        <?php
+        $tags = get_the_tags();
+        if ($tags) :
+        ?>
+        <div class="article-tags">
+            <?php foreach ($tags as $tag) : ?>
+                <a href="<?php echo get_tag_link($tag->term_id); ?>" class="article-tag">#<?php echo $tag->name; ?></a>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+
+        <div class="article-share">
+            <span class="share-label">Partager:</span>
+            <div class="share-buttons">
+                <a href="https://www.linkedin.com/shareArticle?url=<?php the_permalink(); ?>" class="share-btn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="share-btn" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Author Box -->
+    <div class="author-box">
+        <div class="author-avatar">
+            <?php
+            $author_name = get_the_author();
+            $words = explode(' ', $author_name);
+            echo strtoupper(substr($words[0], 0, 1) . (isset($words[1]) ? substr($words[1], 0, 1) : ''));
+            ?>
+        </div>
+        <div class="author-info">
+            <div class="author-name"><?php the_author(); ?></div>
+            <div class="author-bio"><?php the_author_meta('description'); ?></div>
+        </div>
     </div>
-    <?php endif; ?>
+
+    <!-- Post Navigation -->
+    <nav class="post-nav">
+        <?php
+        $prev_post = get_previous_post();
+        $next_post = get_next_post();
+        ?>
+        <?php if (!empty($prev_post)) : ?>
+        <a href="<?php echo get_permalink($prev_post->ID); ?>" class="post-nav-link">
+            <div class="post-nav-label">← Précédent</div>
+            <div class="post-nav-title"><?php echo $prev_post->post_title; ?></div>
+        </a>
+        <?php endif; ?>
+        
+        <?php if (!empty($next_post)) : ?>
+        <a href="<?php echo get_permalink($next_post->ID); ?>" class="post-nav-link">
+            <div class="post-nav-label">Suivant →</div>
+            <div class="post-nav-title"><?php echo $next_post->post_title; ?></div>
+        </a>
+        <?php endif; ?>
+    </nav>
 </article>
 
-<nav class="post-navigation">
-    <?php
-    previous_post_link('%link', '<span class="nav-subtitle">← Article précédent</span><span class="nav-title">%title</span>');
-    next_post_link('%link', '<span class="nav-subtitle">Article suivant →</span><span class="nav-title">%title</span>');
-    ?>
-</nav>
-
+<!-- Comments -->
 <?php
 if (comments_open() || get_comments_number()) :
 ?>
 <section class="comments-section">
-    <h3 class="comments-title">Commentaires (<?php comments_number('0', '1', '%'); ?>)</h3>
+    <h3 class="comments-title">Commentaires</h3>
     
     <?php comments_template(); ?>
 </section>
 <?php endif; ?>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    jQuery(document).ready(function($) {
-        // Burger Menu Toggle
-        $('#burgerBtn, #overlay').on('click', function() {
-            $('#burgerBtn').toggleClass('active');
-            $('#sidebar').toggleClass('active');
-            $('#overlay').toggleClass('active');
-        });
-
-        // Smooth scroll for nav links
-        $('.nav-link-menu').on('click', function(e) {
-            var href = $(this).attr('href');
-            if (href.indexOf('#') > -1) {
-                e.preventDefault();
-                var hash = href.split('#')[1];
-                $('html, body').animate({
-                    scrollTop: $('#' + hash).offset().top
-                }, 800);
-                
-                if ($('#sidebar').hasClass('active')) {
-                    $('#burgerBtn').removeClass('active');
-                    $('#sidebar').removeClass('active');
-                    $('#overlay').removeClass('active');
-                }
-            }
-        });
-    });
-</script>
 
 <?php get_footer(); ?>

@@ -7,7 +7,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -20,8 +20,8 @@
             --bg-darker: #07080a;
             --text-light: #e0e0e0;
             --text-muted: #8892b0;
-            --font-display: 'Playfair Display', serif;
-            --font-body: 'Outfit', sans-serif;
+            --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         body, html {
@@ -62,69 +62,142 @@
             overflow: hidden;
         }
 
-        /* Animated gradient background */
+        /* Professional blur background */
         .hero-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(127,255,212,0.05) 0%, transparent 50%, rgba(127,255,212,0.08) 100%);
-            animation: gradientShift 8s ease-in-out infinite;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(127, 255, 212, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(69, 184, 148, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(127, 255, 212, 0.05) 0%, transparent 70%);
+            animation: gradientPulse 10s ease-in-out infinite;
         }
 
-        @keyframes gradientShift {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(5deg); }
+        @keyframes gradientPulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* Glassmorphism blur overlay */
+        .hero-blur-overlay {
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(127, 255, 212, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 70% 60%, rgba(127, 255, 212, 0.05) 0%, transparent 30%);
+            filter: blur(30px);
+            animation: blurFloat 15s ease-in-out infinite;
+        }
+
+        @keyframes blurFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(2%, 2%) rotate(2deg); }
+            50% { transform: translate(-1%, 3%) rotate(-1deg); }
+            75% { transform: translate(-2%, -1%) rotate(1deg); }
+        }
+
+        /* Profile photo */
+        .hero-profile {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin-bottom: 30px;
+            z-index: 2;
+        }
+
+        .hero-profile img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(127, 255, 212, 0.3);
+            animation: profileGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes profileGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(127, 255, 212, 0.3); }
+            50% { box-shadow: 0 0 50px rgba(127, 255, 212, 0.5); }
+        }
+
+        .hero-profile::before {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border-radius: 50%;
+            border: 2px solid rgba(127, 255, 212, 0.3);
+            animation: profileRing 2s ease-in-out infinite;
+        }
+
+        @keyframes profileRing {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.5; }
         }
 
         /* Floating shapes */
         .floating-shape {
             position: absolute;
-            border: 1px solid rgba(127,255,212,0.2);
+            border: 1px solid rgba(127,255,212,0.15);
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
         }
 
         .shape-1 {
-            width: 100px; height: 100px;
-            top: 20%; left: 10%;
+            width: 120px; height: 120px;
+            top: 15%; left: 8%;
             animation-delay: 0s;
         }
 
         .shape-2 {
-            width: 150px; height: 150px;
-            top: 60%; right: 15%;
-            animation-delay: 2s;
+            width: 180px; height: 180px;
+            top: 55%; right: 10%;
+            animation-delay: 3s;
         }
 
         .shape-3 {
-            width: 80px; height: 80px;
-            bottom: 20%; left: 20%;
-            animation-delay: 4s;
+            width: 90px; height: 90px;
+            bottom: 15%; left: 15%;
+            animation-delay: 5s;
+        }
+
+        .shape-4 {
+            width: 60px; height: 60px;
+            top: 25%; right: 20%;
+            animation-delay: 2s;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
-            50% { transform: translateY(-30px) rotate(180deg); opacity: 0.6; }
+            50% { transform: translateY(-40px) rotate(180deg); opacity: 0.6; }
         }
 
-        /* Background animated particles for Hero */
+        /* Background animated particles */
         .particles {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
             background-image: 
-                radial-gradient(rgba(127, 255, 212, 0.15) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveBackground 20s linear infinite;
+                radial-gradient(rgba(127, 255, 212, 0.12) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: moveBackground 30s linear infinite;
         }
 
         @keyframes moveBackground {
             from { background-position: 0 0; }
-            to { background-position: 100px 100px; }
+            to { background-position: 120px 120px; }
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
         }
 
         .hero-title {
-            font-size: 4rem;
-            margin-bottom: 20px;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 15px;
             z-index: 1;
             position: relative;
         }
@@ -135,9 +208,8 @@
             opacity: 0;
         }
 
-        .hero-title .word-1 { animation-delay: 0.3s; }
-        .hero-title .word-2 { animation-delay: 0.6s; color: var(--primary-color); }
-        .hero-title .word-3 { animation-delay: 0.9s; }
+        .hero-title .word-1 { animation-delay: 0.5s; }
+        .hero-title .word-2 { animation-delay: 0.8s; color: var(--primary-color); }
 
         @keyframes titleReveal {
             0% { transform: translateY(50px); opacity: 0; }
@@ -145,12 +217,12 @@
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--text-muted);
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             z-index: 1;
             opacity: 0;
-            animation: fadeSlideUp 1s 1.2s forwards ease-out;
+            animation: fadeSlideUp 1s 1.3s forwards ease-out;
         }
 
         .hero-subtitle .typing-text {
@@ -168,21 +240,62 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeSlideUp 1s 1.6s forwards ease-out;
+        }
+
+        .hero-socials {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeSlideUp 1s 1.8s forwards ease-out;
+        }
+
+        .hero-socials .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(127,255,212,0.1);
+            text-decoration: none;
+        }
+
+        .hero-socials .social-link:hover {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(127,255,212,0.3);
+        }
+
         .btn {
             background-color: transparent;
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
             padding: 15px 30px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
-            border-radius: 5px;
-            transition: all 0.3s ease;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             z-index: 1;
-            opacity: 0;
-            animation: fadeSlideUp 1s 1.5s forwards ease-out;
             display: inline-block;
+            text-decoration: none;
         }
 
         .btn::before {
@@ -201,8 +314,54 @@
         .btn:hover {
             background-color: var(--primary-color);
             color: var(--bg-dark);
-            box-shadow: 0 0 25px var(--primary-color);
-            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(127, 255, 212, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            border-right: 2px solid var(--primary-color);
+            transform: rotate(45deg);
+            opacity: 0.5;
+        }
+
+        .scroll-indicator span:nth-child(2) {
+            animation-delay: -0.2s;
+            margin-top: -5px;
+        }
+
+        .scroll-indicator span:nth-child(3) {
+            animation-delay: -0.4s;
+            margin-top: -5px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
 
         /* Section Global */
@@ -662,18 +821,39 @@
     <!-- Hero Section -->
     <section id="hero">
         <div class="hero-bg"></div>
+        <div class="hero-blur-overlay"></div>
         <div class="particles"></div>
         <div class="floating-shape shape-1"></div>
         <div class="floating-shape shape-2"></div>
         <div class="floating-shape shape-3"></div>
-        <h1 class="hero-title">
-            <span class="word-1">Développeur</span>
-            <span class="word-2">Freelance</span>
-        </h1>
-        <p class="hero-subtitle">
-            <span class="typing-text">Expert PrestaShop · WordPress · Symfony</span>
-        </p>
-        <a href="#services" class="btn">Voir mes services</a>
+        <div class="floating-shape shape-4"></div>
+        
+        <div class="hero-content">
+            <div class="hero-profile">
+                <img src="https://eddy-rakotoarivony.com/wp-content/uploads/2026/03/eddy-photo.jpg" alt="Eddy Rakotoarivony" onerror="this.src='https://via.placeholder.com/180x180/7FFFD4/0f1115?text=E';">
+            </div>
+            <h1 class="hero-title">
+                <span class="word-1">Eddy</span>
+                <span class="word-2">Rakotoarivony</span>
+            </h1>
+            <p class="hero-subtitle">
+                <span class="typing-text">Expert PrestaShop · WordPress · Symfony</span>
+            </p>
+            <div class="hero-cta">
+                <a href="#services" class="btn btn-primary">Voir mes services</a>
+                <a href="#contact" class="btn">Me contacter</a>
+            </div>
+            <div class="hero-socials">
+                <a href="https://linkedin.com/in/eddy-rakotoarivony" class="social-link" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/eddy-rakotoarivony" class="social-link" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </section>
 
     <!-- Services Section -->
