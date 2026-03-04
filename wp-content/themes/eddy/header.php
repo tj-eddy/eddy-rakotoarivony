@@ -24,15 +24,11 @@
 
 <body <?php body_class(); ?>>
 
+<?php
+// Add header styles inline for the header section only
+// (These are minimal styles needed for the header)
+?>
 <style>
-    :root {
-        --primary-color: #7FFFD4;
-        --primary-dark: #45b894;
-        --bg-dark: #0f1115;
-        --text-light: #e0e0e0;
-        --text-muted: #8892b0;
-    }
-    
     #header {
         padding: 32px 24px;
         text-align: center;

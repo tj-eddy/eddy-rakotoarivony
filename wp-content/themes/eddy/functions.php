@@ -5,11 +5,29 @@
  * @package Eddy
  */
 
-// Enqueue parent styles
-function eddy_enqueue_styles() {
-    wp_enqueue_style('eddy-parent-style', get_template_directory_uri() . '/style.css');
+// Enqueue styles and scripts
+function eddy_enqueue_scripts() {
+    // Main stylesheet (style.css)
+    wp_enqueue_style('eddy-style', get_stylesheet_uri());
+    
+    // Single post specific styles (loaded on single posts/pages)
+    if (is_singular()) {
+        wp_enqueue_style('eddy-single-style', get_template_directory_uri() . '/single.css', array('eddy-style'), '1.0.0');
+    }
+    
+    // Google Fonts
+    wp_enqueue_style('eddy-google-fonts', 'https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap', array(), null);
+    
+    // Font Awesome
+    wp_enqueue_style('eddy-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0');
+    
+    // jQuery (WordPress includes jQuery by default)
+    wp_enqueue_script('jquery');
+    
+    // Main JavaScript file
+    wp_enqueue_script('eddy-main-js', get_template_directory_uri() . '/main.js', array('jquery'), '1.0.0', true);
 }
-add_action('wp_enqueue_scripts', 'eddy_enqueue_styles');
+add_action('wp_enqueue_scripts', 'eddy_enqueue_scripts');
 
 // Add theme support
 function eddy_theme_setup() {
