@@ -1,0 +1,17 @@
+/*
+ * Theme Name: Eddy Portfolio
+ * Theme URI: https://eddyrakotoarivony.dev
+ * Author: Eddy RAKOTOARIVONY
+ * Author URI: https://eddyrakotoarivony.dev
+ * Description: Thème portfolio professionnel pour développeur web PrestaShop, Symfony, WordPress et TMA. One-page moderne avec mode sombre/clair, carrousel actualités et gestion des services.
+ * Version: 1.0.0
+ * Requires at least: 6.0
+ * Tested up to: 6.7
+ * Requires PHP: 8.0
+ * License: GNU General Public License v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: eddy-portfolio
+ * Tags: portfolio, one-page, custom-colors, dark-mode, responsive-layout, blog, custom-menu
+ */
+
+@import url('assets/css/style-main.css');

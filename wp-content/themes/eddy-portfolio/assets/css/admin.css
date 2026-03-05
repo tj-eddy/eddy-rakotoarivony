@@ -1,0 +1,28 @@
+/* =====================================================
+   EDDY PORTFOLIO — admin.css
+   Styles personnalisés pour l'admin WordPress
+   ===================================================== */
+
+/* Metabox Services */
+.eddy-metabox {
+    padding: 12px;
+}
+
+.eddy-metabox label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #1d2327;
+}
+
+.eddy-metabox input,
+.eddy-metabox textarea,
+.eddy-metabox select {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Colonnes admin CPT Services */
+.column-service_icon {
+    width: 60px;
+}
