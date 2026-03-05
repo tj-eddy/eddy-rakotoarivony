@@ -244,6 +244,18 @@ function eddy_customize_register( WP_Customize_Manager $wp_customize ) {
         'type'        => 'textarea',
     ] );
 
+    $wp_customize->add_setting( 'eddy_wpforms_id', [
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ] );
+    $wp_customize->add_control( 'eddy_wpforms_id', [
+        'label'       => __( 'ID du formulaire WPForms', 'eddy-portfolio' ),
+        'description' => __( 'Entrez l\'ID du formulaire WPForms à afficher (ex : 42). Visible dans WPForms → Tous les formulaires.', 'eddy-portfolio' ),
+        'section'     => 'eddy_contact',
+        'type'        => 'number',
+    ] );
+
     // =========================================================
     // SECTION : SEO
     // =========================================================

@@ -125,88 +125,25 @@ $map_embed     = get_theme_mod( 'eddy_contact_map_embed', '' );
                 <?php endif; ?>
             </div>
 
-            <!-- Formulaire de contact -->
+            <!-- Formulaire de contact WPForms -->
             <div>
                 <h3 class="text-xl font-bold mb-6" style="color:var(--color-text)">
                     <?php esc_html_e( 'Envoyer un message', 'eddy-portfolio' ); ?>
                 </h3>
 
-                <form id="contact-form" novalidate>
-                    <?php wp_nonce_field( 'eddy_nonce', 'eddy_contact_nonce' ); ?>
-                    <div class="space-y-4">
-
-                        <div>
-                            <label for="contact-name" class="block text-sm font-medium mb-1.5" style="color:var(--color-text)">
-                                <?php esc_html_e( 'Nom complet', 'eddy-portfolio' ); ?>
-                                <span class="text-red-500" aria-hidden="true">*</span>
-                            </label>
-                            <input type="text" id="contact-name" name="name" class="contact-input"
-                                   placeholder="<?php esc_attr_e( 'Jean Dupont', 'eddy-portfolio' ); ?>"
-                                   autocomplete="name" required aria-required="true">
-                            <p id="name-error" class="field-error" role="alert">
-                                <?php esc_html_e( 'Veuillez entrer votre nom.', 'eddy-portfolio' ); ?>
-                            </p>
-                        </div>
-
-                        <div>
-                            <label for="contact-email" class="block text-sm font-medium mb-1.5" style="color:var(--color-text)">
-                                <?php esc_html_e( 'Email', 'eddy-portfolio' ); ?>
-                                <span class="text-red-500" aria-hidden="true">*</span>
-                            </label>
-                            <input type="email" id="contact-email" name="email" class="contact-input"
-                                   placeholder="jean@exemple.com" autocomplete="email" required aria-required="true">
-                            <p id="email-error" class="field-error" role="alert">
-                                <?php esc_html_e( 'Veuillez entrer un email valide.', 'eddy-portfolio' ); ?>
-                            </p>
-                        </div>
-
-                        <div>
-                            <label for="contact-subject" class="block text-sm font-medium mb-1.5" style="color:var(--color-text)">
-                                <?php esc_html_e( 'Sujet', 'eddy-portfolio' ); ?>
-                                <span class="text-red-500" aria-hidden="true">*</span>
-                            </label>
-                            <select id="contact-subject" name="subject" class="contact-input" required aria-required="true">
-                                <option value=""><?php esc_html_e( 'Sélectionner un sujet', 'eddy-portfolio' ); ?></option>
-                                <option value="prestashop"><?php esc_html_e( 'Projet PrestaShop', 'eddy-portfolio' ); ?></option>
-                                <option value="symfony"><?php esc_html_e( 'Projet Symfony', 'eddy-portfolio' ); ?></option>
-                                <option value="wordpress"><?php esc_html_e( 'Projet WordPress', 'eddy-portfolio' ); ?></option>
-                                <option value="tma"><?php esc_html_e( 'Contrat TMA', 'eddy-portfolio' ); ?></option>
-                                <option value="audit"><?php esc_html_e( 'Audit technique', 'eddy-portfolio' ); ?></option>
-                                <option value="autre"><?php esc_html_e( 'Autre demande', 'eddy-portfolio' ); ?></option>
-                            </select>
-                            <p id="subject-error" class="field-error" role="alert">
-                                <?php esc_html_e( 'Veuillez choisir un sujet.', 'eddy-portfolio' ); ?>
-                            </p>
-                        </div>
-
-                        <div>
-                            <label for="contact-message" class="block text-sm font-medium mb-1.5" style="color:var(--color-text)">
-                                <?php esc_html_e( 'Message', 'eddy-portfolio' ); ?>
-                                <span class="text-red-500" aria-hidden="true">*</span>
-                            </label>
-                            <textarea id="contact-message" name="message" class="contact-input" rows="5"
-                                      placeholder="<?php esc_attr_e( 'Décrivez votre projet ou votre besoin...', 'eddy-portfolio' ); ?>"
-                                      required aria-required="true"></textarea>
-                            <p id="message-error" class="field-error" role="alert">
-                                <?php esc_html_e( 'Le message doit contenir au moins 10 caractères.', 'eddy-portfolio' ); ?>
-                            </p>
-                        </div>
-
-                        <button type="submit" id="contact-submit" class="btn-primary w-full justify-center py-3">
-                            <?php esc_html_e( 'Envoyer le message', 'eddy-portfolio' ); ?>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                            </svg>
-                        </button>
-
-                        <div id="form-success" class="success-message" role="status">
-                            <strong><?php esc_html_e( 'Message envoyé !', 'eddy-portfolio' ); ?></strong>
-                            <?php esc_html_e( 'Je vous répondrai dans les 24h. Merci !', 'eddy-portfolio' ); ?>
-                        </div>
-
-                    </div>
-                </form>
+                <?php
+                $wpforms_id = (int) get_theme_mod( 'eddy_wpforms_id', 0 );
+                if ( $wpforms_id && function_exists( 'wpforms' ) ) {
+                    echo do_shortcode( '[wpforms id="' . $wpforms_id . '"]' );
+                } elseif ( current_user_can( 'manage_options' ) ) {
+                    printf(
+                        '<p class="text-sm p-4 rounded-lg" style="background:rgba(15,118,110,0.08);color:var(--color-text-muted)">%s <a href="%s" class="text-teal-600 underline">%s</a>.</p>',
+                        esc_html__( 'Configurez l\'ID du formulaire WPForms dans', 'eddy-portfolio' ),
+                        esc_url( admin_url( 'customize.php?autofocus[section]=eddy_contact' ) ),
+                        esc_html__( 'Apparence → Personnaliser → Contact', 'eddy-portfolio' )
+                    );
+                }
+                ?>
             </div>
 
         </div>
