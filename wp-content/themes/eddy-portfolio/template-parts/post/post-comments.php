@@ -59,6 +59,7 @@ if ( ! comments_open() && ! have_comments() ) return;
  * @param array      $args    Arguments.
  * @param int        $depth   Profondeur d'imbrication.
  */
+if ( ! function_exists( 'eddy_comment_template' ) ) :
 function eddy_comment_template( WP_Comment $comment, array $args, int $depth ): void {
     $reply_link = get_comment_reply_link( array_merge( $args, [ 'depth' => $depth, 'max_depth' => $args['max_depth'] ] ) );
     ?>
@@ -89,3 +90,4 @@ function eddy_comment_template( WP_Comment $comment, array $args, int $depth ): 
     </li>
     <?php
 }
+endif;

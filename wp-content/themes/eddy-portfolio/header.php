@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
 
-    <!-- Tailwind config inline (doit être avant le CDN) -->
+    <?php wp_head(); ?>
+
+    <!-- Tailwind CDN + config (doit être APRÈS wp_head pour que le CDN soit chargé) -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        window.tailwindConfig = {
+        tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
@@ -22,8 +25,6 @@
             }
         };
     </script>
-
-    <?php wp_head(); ?>
 </head>
 
 <body <?php body_class( 'antialiased' ); ?>>

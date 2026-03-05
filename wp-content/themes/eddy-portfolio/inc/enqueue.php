@@ -22,14 +22,8 @@ function eddy_enqueue_assets() {
         null
     );
 
-    // Tailwind CSS CDN
-    wp_enqueue_script(
-        'eddy-tailwind',
-        'https://cdn.tailwindcss.com',
-        [],
-        null,
-        false
-    );
+    // Note : Tailwind CDN est chargé directement dans header.php avec sa config
+    // (wp_enqueue_script ne permet pas d'injecter tailwind.config juste après)
 
     // Feuille de styles principale du thème
     wp_enqueue_style(

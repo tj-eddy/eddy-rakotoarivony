@@ -5,14 +5,14 @@
 
 /* global EDDY_VARS, POSTS_DATA */
 
+// Active les animations reveal uniquement quand JS est disponible
+// (doit être HORS du document.ready pour s'exécuter immédiatement)
+document.documentElement.classList.add('js-ready');
+
+(function ($) {
 $(function () {
 
-  // ── 1. Configuration Tailwind (appliquée via window.tailwindConfig dans header.php)
-  if (typeof tailwind !== 'undefined' && window.tailwindConfig) {
-    tailwind.config = window.tailwindConfig;
-  }
-
-  // ── 2. Dark / Light Mode ──
+  // ── 1. Dark / Light Mode ──
   function initTheme() {
     var defaultTheme = (typeof EDDY_VARS !== 'undefined') ? EDDY_VARS.dark_mode_default : 'light';
     var saved = localStorage.getItem('eddy-theme');
@@ -373,3 +373,4 @@ $(function () {
   });
 
 }); // end $(function)
+}(jQuery)); // end no-conflict wrapper

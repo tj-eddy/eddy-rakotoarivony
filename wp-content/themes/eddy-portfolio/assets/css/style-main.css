@@ -528,13 +528,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ── Scroll Reveal ── */
+/* Progressive enhancement : contenu visible par défaut.
+   La classe html.js-ready active l'animation uniquement quand JS est chargé. */
 .reveal {
-  opacity: 0;
-  transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal.visible {
+html.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+html.js-ready .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }

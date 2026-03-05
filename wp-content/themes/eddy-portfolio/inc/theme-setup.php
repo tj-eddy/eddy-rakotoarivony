@@ -68,3 +68,17 @@ function eddy_theme_setup() {
     ] );
 }
 add_action( 'after_setup_theme', 'eddy_theme_setup' );
+
+/**
+ * Calcule le temps de lecture estimé d'un article.
+ *
+ * @param string $content Contenu de l'article.
+ * @return string Temps de lecture formaté.
+ */
+function eddy_estimated_read_time( string $content ): string {
+    $words_per_minute = 200;
+    $word_count       = str_word_count( wp_strip_all_tags( $content ) );
+    $minutes          = max( 1, (int) ceil( $word_count / $words_per_minute ) );
+    /* translators: %d : nombre de minutes */
+    return sprintf( _n( '%d min', '%d min', $minutes, 'eddy-portfolio' ), $minutes );
+}
