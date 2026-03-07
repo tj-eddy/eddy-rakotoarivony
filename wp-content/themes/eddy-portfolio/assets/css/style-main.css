@@ -503,26 +503,19 @@ h1, h2, h3, h4, h5, h6 {
 .service-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, rgba(15,118,110,0.12) 0%, rgba(20,184,166,0.08) 100%);
-  border: 1px solid rgba(15,118,110,0.15);
+  background: transparent;
+  border: none;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
-  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
-              background 0.35s ease,
-              box-shadow 0.35s ease;
-  color: var(--color-primary);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
   flex-shrink: 0;
 }
 
 .service-card:hover .service-icon {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-  border-color: transparent;
-  color: white;
   transform: scale(1.08) rotate(-3deg);
-  box-shadow: 0 8px 20px -4px rgba(15,118,110,0.4);
 }
 
 .service-icon svg {
@@ -535,18 +528,14 @@ h1, h2, h3, h4, h5, h6 {
   stroke: currentColor; /* pour les icônes stroke (TMA) */
 }
 
-/* Au hover : fond teal → icône blanche quelle que soit sa couleur brand */
+/* Au hover : légère mise en avant de l'icône */
 .service-card:hover .service-icon svg {
-  filter: brightness(0) invert(1);
   transform: scale(1.05);
 }
 
-/* Dark mode — logos sombres (Symfony #1A1A1A) : on les éclaircit */
+/* Dark mode — logo Symfony noir → éclairci */
 .dark .service-icon[data-brand="symfony"] svg {
   filter: invert(0.85) brightness(1.8);
-}
-.dark .service-card:hover .service-icon[data-brand="symfony"] svg {
-  filter: brightness(0) invert(1);
 }
 
 /* Titre service */
