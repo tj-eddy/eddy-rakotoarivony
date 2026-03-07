@@ -8,8 +8,17 @@
 $section_title    = get_theme_mod( 'eddy_services_title', __( 'Mes Expertises', 'eddy-portfolio' ) );
 $section_subtitle = get_theme_mod( 'eddy_services_subtitle', __( 'Solutions sur-mesure en développement web, e-commerce et maintenance applicative.', 'eddy-portfolio' ) );
 
-// Clés brand par index (correspondance avec assets/img/brands/)
-$fallback_brands = [ 'prestashop', 'wordpress', 'symfony', 'tma' ];
+// Icônes SVG Lucide (stroke currentColor) par index
+$fallback_icons = [
+    // PrestaShop — shopping-bag
+    'M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z M3 6h18 M16 10a4 4 0 01-8 0',
+    // WordPress — globe
+    'M12 2a10 10 0 100 20A10 10 0 0012 2z M2 12h20 M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z',
+    // Symfony — code-2
+    'M4 17l6-6-6-6 M12 19h8',
+    // TMA — wrench
+    'M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z',
+];
 
 // Tags enrichis par technologie
 $fallback_tags = [
@@ -34,21 +43,7 @@ $svg_allowed = [
 ];
 
 /**
- * Retourne le markup SVG inline d'un logo brand depuis assets/img/brands/.
- */
-if ( ! function_exists( 'eddy_brand_icon' ) ) {
-    function eddy_brand_icon( string $key ): string {
-        $file = get_template_directory() . '/assets/img/brands/' . sanitize_file_name( $key ) . '.svg';
-        if ( file_exists( $file ) ) {
-            // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-            return file_get_contents( $file );
-        }
-        return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>';
-    }
-}
-
-/**
- * Convertit une chaîne de paths SVG en balises <path> (rétrocompat CPT).
+ * Convertit une chaîne de paths SVG en balises <path>.
  */
 function eddy_render_svg_paths( string $paths, array $allowed ): string {
     $parts = preg_split( '/(?=\bM(?!\d))/', $paths, -1, PREG_SPLIT_NO_EMPTY );
@@ -96,11 +91,10 @@ $services_query = new WP_Query( [
                 <?php $i = 0; while ( $services_query->have_posts() ) : $services_query->the_post(); ?>
 
                     <?php
-                    $brand_key = get_post_meta( get_the_ID(), '_service_brand', true );
-                    if ( ! $brand_key ) {
-                        $brand_key = $fallback_brands[ $i % count( $fallback_brands ) ];
-                    }
                     $icon_path = get_post_meta( get_the_ID(), '_service_icon', true );
+                    if ( ! $icon_path ) {
+                        $icon_path = $fallback_icons[ $i % count( $fallback_icons ) ];
+                    }
                     $tags = get_post_meta( get_the_ID(), '_service_tags', true );
                     if ( empty( $tags ) || ! is_array( $tags ) ) {
                         $tags = $fallback_tags[ $i % count( $fallback_tags ) ];
@@ -112,15 +106,13 @@ $services_query = new WP_Query( [
                         <!-- Numéro décoratif -->
                         <span class="service-number" aria-hidden="true"><?php echo sprintf( '%02d', $i + 1 ); ?></span>
 
-                        <!-- Logo brand -->
-                        <div class="service-icon" aria-hidden="true" data-brand="<?php echo esc_attr( $brand_key ); ?>">
-                            <?php if ( $icon_path ) : ?>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                    <?php echo eddy_render_svg_paths( $icon_path, $svg_allowed ); ?>
-                                </svg>
-                            <?php else : ?>
-                                <?php echo eddy_brand_icon( $brand_key ); ?>
-                            <?php endif; ?>
+                        <!-- Icône Lucide -->
+                        <div class="service-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <?php echo eddy_render_svg_paths( $icon_path, $svg_allowed ); ?>
+                            </svg>
                         </div>
 
                         <!-- Titre -->
@@ -163,25 +155,25 @@ $services_query = new WP_Query( [
                     [
                         'title'  => __( 'Développement PrestaShop', 'eddy-portfolio' ),
                         'excerpt'=> __( 'Boutiques e-commerce sur-mesure, modules métier, migrations et intégrations ERP/CRM. Versions 1.7 à 8.x, performances optimisées (Redis, WebP, CDN).', 'eddy-portfolio' ),
-                        'brand'  => 'prestashop',
+                        'icon'   => 0,
                         'tags'   => [ 'PrestaShop 8', 'PHP 8', 'Modules', 'API REST', 'Redis', 'E-commerce' ],
                     ],
                     [
                         'title'  => __( 'Développement WordPress', 'eddy-portfolio' ),
                         'excerpt'=> __( 'Sites et applications WordPress sur-mesure, thèmes et plugins, architecture headless, optimisation SEO et Core Web Vitals 95+.', 'eddy-portfolio' ),
-                        'brand'  => 'wordpress',
+                        'icon'   => 1,
                         'tags'   => [ 'WordPress 6', 'WooCommerce', 'Headless', 'ACF', 'Gutenberg', 'SEO' ],
                     ],
                     [
                         'title'  => __( 'Développement Symfony', 'eddy-portfolio' ),
                         'excerpt'=> __( 'Applications web et APIs REST avec Symfony 6/7 et API Platform. Architecture DDD, auth JWT, documentation OpenAPI et CI/CD Docker.', 'eddy-portfolio' ),
-                        'brand'  => 'symfony',
+                        'icon'   => 2,
                         'tags'   => [ 'Symfony 7', 'API Platform', 'PHP 8', 'Docker', 'JWT', 'OpenAPI' ],
                     ],
                     [
                         'title'  => __( 'TMA — Tierce Maintenance', 'eddy-portfolio' ),
                         'excerpt'=> __( 'Maintenance corrective, évolutive et préventive avec SLA garantis, monitoring 24/7 et cadre ITIL léger pour tout projet PHP.', 'eddy-portfolio' ),
-                        'brand'  => 'tma',
+                        'icon'   => 3,
                         'tags'   => [ 'TMA', 'SLA garanti', 'Monitoring', 'CI/CD', 'ITIL', 'Git' ],
                     ],
                 ];
@@ -189,8 +181,12 @@ $services_query = new WP_Query( [
 
                 <article class="service-card reveal service-card-stacked" style="--card-delay:<?php echo $j; ?>">
                     <span class="service-number" aria-hidden="true"><?php echo sprintf( '%02d', $j + 1 ); ?></span>
-                    <div class="service-icon" aria-hidden="true" data-brand="<?php echo esc_attr( $service['brand'] ); ?>">
-                        <?php echo eddy_brand_icon( $service['brand'] ); ?>
+                    <div class="service-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <?php echo eddy_render_svg_paths( $fallback_icons[ $service['icon'] ], $svg_allowed ); ?>
+                        </svg>
                     </div>
                     <h3 class="text-base font-bold mb-2" style="color:var(--color-text)">
                         <?php echo esc_html( $service['title'] ); ?>
