@@ -531,12 +531,22 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   flex-shrink: 0;
   overflow: visible;
-  transition: transform 0.35s ease;
-  stroke: currentColor;
+  transition: transform 0.35s ease, filter 0.35s ease;
+  stroke: currentColor; /* pour les icônes stroke (TMA) */
 }
 
+/* Au hover : fond teal → icône blanche quelle que soit sa couleur brand */
 .service-card:hover .service-icon svg {
+  filter: brightness(0) invert(1);
   transform: scale(1.05);
+}
+
+/* Dark mode — logos sombres (Symfony #1A1A1A) : on les éclaircit */
+.dark .service-icon[data-brand="symfony"] svg {
+  filter: invert(0.85) brightness(1.8);
+}
+.dark .service-card:hover .service-icon[data-brand="symfony"] svg {
+  filter: brightness(0) invert(1);
 }
 
 /* Titre service */

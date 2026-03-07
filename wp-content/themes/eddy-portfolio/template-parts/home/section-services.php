@@ -113,7 +113,7 @@ $services_query = new WP_Query( [
                         <span class="service-number" aria-hidden="true"><?php echo sprintf( '%02d', $i + 1 ); ?></span>
 
                         <!-- Logo brand -->
-                        <div class="service-icon" aria-hidden="true">
+                        <div class="service-icon" aria-hidden="true" data-brand="<?php echo esc_attr( $brand_key ); ?>">
                             <?php if ( $icon_path ) : ?>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                                     <?php echo eddy_render_svg_paths( $icon_path, $svg_allowed ); ?>
@@ -189,7 +189,7 @@ $services_query = new WP_Query( [
 
                 <article class="service-card reveal service-card-stacked" style="--card-delay:<?php echo $j; ?>">
                     <span class="service-number" aria-hidden="true"><?php echo sprintf( '%02d', $j + 1 ); ?></span>
-                    <div class="service-icon" aria-hidden="true">
+                    <div class="service-icon" aria-hidden="true" data-brand="<?php echo esc_attr( $service['brand'] ); ?>">
                         <?php echo eddy_brand_icon( $service['brand'] ); ?>
                     </div>
                     <h3 class="text-base font-bold mb-2" style="color:var(--color-text)">
