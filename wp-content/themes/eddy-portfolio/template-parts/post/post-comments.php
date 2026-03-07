@@ -37,6 +37,7 @@ if ( ! comments_open() && ! have_comments() ) return;
     <?php endif; ?>
 
     <?php
+    $commenter = wp_get_current_commenter();
     comment_form( [
         'title_reply'          => __( 'Laisser un commentaire', 'eddy-portfolio' ),
         'title_reply_to'       => __( 'Répondre à %s', 'eddy-portfolio' ),
@@ -45,6 +46,12 @@ if ( ! comments_open() && ! have_comments() ) return;
         'class_submit'         => 'btn-primary mt-2',
         'class_form'           => 'space-y-4',
         'comment_notes_before' => '',
+        'fields'               => [
+            'author' => '<div class="form-group"><label for="author" class="block text-sm font-medium mb-1.5" style="color:var(--color-text)">' . esc_html__( 'Nom', 'eddy-portfolio' ) . ' <span aria-hidden="true" class="text-red-500">*</span></label><input id="author" name="author" type="text" class="contact-input" value="' . esc_attr( $commenter['comment_author'] ) . '" maxlength="245" autocomplete="name" required /></div>',
+            'email'  => '<div class="form-group"><label for="email" class="block text-sm font-medium mb-1.5" style="color:var(--color-text)">' . esc_html__( 'E-mail', 'eddy-portfolio' ) . ' <span aria-hidden="true" class="text-red-500">*</span></label><input id="email" name="email" type="email" class="contact-input" value="' . esc_attr( $commenter['comment_author_email'] ) . '" maxlength="100" autocomplete="email" required /></div>',
+            'url'    => '<div class="form-group"><label for="url" class="block text-sm font-medium mb-1.5" style="color:var(--color-text)">' . esc_html__( 'Site web', 'eddy-portfolio' ) . '</label><input id="url" name="url" type="url" class="contact-input" value="' . esc_attr( $commenter['comment_author_url'] ) . '" maxlength="200" autocomplete="url" /></div>',
+            'cookies' => '<div class="form-group flex items-start gap-2 mt-1"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" class="mt-1" ' . ( isset( $_COOKIE['comment_author_' . COOKIEHASH] ) ? 'checked' : '' ) . ' /><label for="wp-comment-cookies-consent" class="text-sm" style="color:var(--color-text-muted)">' . esc_html__( 'Enregistrer mon nom et mon e-mail pour mon prochain commentaire.', 'eddy-portfolio' ) . '</label></div>',
+        ],
         'comment_field'        => '<div class="form-group"><label for="comment" class="block text-sm font-medium mb-1.5" style="color:var(--color-text)">' . esc_html__( 'Commentaire', 'eddy-portfolio' ) . ' <span aria-hidden="true" class="text-red-500">*</span></label><textarea id="comment" name="comment" class="contact-input" rows="5" required aria-required="true"></textarea></div>',
     ] );
     ?>
@@ -61,7 +68,7 @@ if ( ! comments_open() && ! have_comments() ) return;
  */
 if ( ! function_exists( 'eddy_comment_template' ) ) :
 function eddy_comment_template( WP_Comment $comment, array $args, int $depth ): void {
-    $reply_link = get_comment_reply_link( array_merge( $args, [ 'depth' => $depth, 'max_depth' => $args['max_depth'] ] ) );
+    $reply_link = get_comment_reply_link( [ ...$args, 'depth' => $depth, 'max_depth' => $args['max_depth'] ] );
     ?>
     <li id="comment-<?php comment_ID(); ?>" <?php comment_class( 'comment-card' ); ?>>
         <div class="flex items-start gap-3">
