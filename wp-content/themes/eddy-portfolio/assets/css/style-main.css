@@ -526,6 +526,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .service-icon svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+  flex-shrink: 0;
+  overflow: visible;
   transition: transform 0.35s ease;
   stroke: currentColor;
 }

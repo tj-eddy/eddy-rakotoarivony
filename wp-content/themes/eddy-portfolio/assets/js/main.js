@@ -196,7 +196,7 @@ document.documentElement.classList.add('js-ready');
       $('body').css('overflow', '');
     }
 
-    $('#logo-btn, #hero-about-btn').on('click', openModal);
+    $('#hero-about-btn').on('click', openModal);
     $('#modal-close').on('click', closeModal);
     $('.modal-overlay').on('click', closeModal);
 

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+  <!-- Outer rim -->
+  <circle cx="12" cy="12" r="9.5"/>
+  <!-- Hub -->
+  <circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/>
+  <!-- 6 spokes (every 60°) from hub edge to rim -->
+  <line x1="14.5" y1="12"    x2="21.5" y2="12"/>
+  <line x1="9.5"  y1="12"    x2="2.5"  y2="12"/>
+  <line x1="13.4" y1="14.17" x2="16.75" y2="20.23"/>
+  <line x1="10.6" y1="14.17" x2="7.25"  y2="20.23"/>
+  <line x1="13.4" y1="9.83"  x2="16.75" y2="3.77"/>
+  <line x1="10.6" y1="9.83"  x2="7.25"  y2="3.77"/>
+</svg>

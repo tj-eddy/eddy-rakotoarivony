@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Shield -->
+  <path d="M12 2.5L19.5 6V11.5C19.5 16.2 16.2 20.3 12 21.8C7.8 20.3 4.5 16.2 4.5 11.5V6Z"/>
+  <!-- Checkmark (SLA garanti) -->
+  <polyline points="8.5,12.5 11,15 15.5,9.5"/>
+</svg>

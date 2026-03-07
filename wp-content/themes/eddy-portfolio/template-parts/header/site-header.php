@@ -10,9 +10,8 @@
         <div class="flex items-center justify-between h-16">
 
             <!-- Logo / Avatar -->
-            <button id="logo-btn" class="flex items-center gap-3 hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg p-1"
-                    aria-label="<?php esc_attr_e( "Ouvrir le profil d'Eddy RAKOTOARIVONY", 'eddy-portfolio' ); ?>"
-                    type="button">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg p-1"
+               aria-label="<?php esc_attr_e( 'Accueil — Eddy RAKOTOARIVONY', 'eddy-portfolio' ); ?>">
                 <?php if ( has_custom_logo() ) : ?>
                     <?php the_custom_logo(); ?>
                 <?php else : ?>
@@ -26,7 +25,7 @@
                         <?php echo esc_html( get_theme_mod( 'eddy_job_title', 'Développeur Web' ) ); ?>
                     </div>
                 </div>
-            </button>
+            </a>
 
             <!-- Navigation desktop -->
             <nav class="hidden md:flex items-center gap-1" aria-label="<?php esc_attr_e( 'Navigation principale', 'eddy-portfolio' ); ?>">

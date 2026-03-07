@@ -25,7 +25,7 @@ if ( ! $avatar_url && has_custom_logo() ) {
 $skills = [ 'PrestaShop', 'Symfony', 'WordPress', 'PHP', 'MySQL', 'JavaScript', 'jQuery', 'Git', 'TMA', 'API REST', 'Tailwind CSS', 'Docker' ];
 
 $bio_paragraphs = $bio_full ? [ $bio_full ] : [
-    __( "Développeur web passionné avec plus de 5 ans d'expérience dans la création et la maintenance d'applications web sur-mesure. Je me spécialise dans les écosystèmes PrestaShop, Symfony et WordPress, avec une expertise particulière en TMA.", 'eddy-portfolio' ),
+    __( "Développeur web passionné avec plus de 7 ans d'expérience dans la création et la maintenance d'applications web sur-mesure. Je me spécialise dans les écosystèmes PrestaShop, Symfony et WordPress, avec une expertise particulière en TMA.", 'eddy-portfolio' ),
     __( 'Basé à Madagascar et disponible en remote, j\'accompagne des clients en France, Europe et dans le monde entier dans leurs projets digitaux. Mon approche combine rigueur technique, respect des délais et communication transparente.', 'eddy-portfolio' ),
     __( 'Toujours en veille technologique, je m\'assure que mes projets respectent les meilleures pratiques du moment : performances, sécurité, accessibilité et SEO. Chaque ligne de code est pensée pour durer.', 'eddy-portfolio' ),
 ];
