@@ -11,185 +11,183 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Retourne le tableau de données démo.
  *
- * @return array{posts: array, services: array, post_tech_terms: array}
+ * @return array{posts: array, services: array, post_tech_terms: array, categories: array}
  */
 function eddy_get_demo_content(): array {
 
     return [
 
         // ============================================
-        // ARTICLES DE BLOG
+        // ARTICLES DE BLOG (3 actus professionnelles)
         // ============================================
         'posts' => [
+
+            // ── Article 1 : PrestaShop ──────────────
             [
-                'post_title'   => "Optimiser les performances d'une boutique PrestaShop : guide complet",
-                'post_content' => '<p>La performance d\'une boutique en ligne est aujourd\'hui un facteur critique, aussi bien pour l\'expérience utilisateur que pour le référencement naturel. Dans cet article, nous allons explorer les techniques avancées pour booster votre boutique PrestaShop et atteindre des scores PageSpeed supérieurs à 90.</p>
+                'post_title'         => 'Optimiser les performances d\'une boutique PrestaShop 8 : guide complet',
+                'post_content'       => '<p>La performance d\'une boutique en ligne est aujourd\'hui un facteur critique, aussi bien pour l\'expérience utilisateur que pour le référencement naturel. Dans cet article, nous explorons les techniques avancées pour atteindre des scores PageSpeed supérieurs à 90 sur une boutique PrestaShop 8.</p>
 
 <h2>Contexte et enjeux</h2>
-<p>Google considère le Core Web Vitals comme un signal de classement depuis 2021. Une boutique PrestaShop mal optimisée peut perdre jusqu\'à 30% de son trafic organique face à des concurrents mieux optimisés. Les métriques clés à surveiller sont le LCP (Largest Contentful Paint), le FID (First Input Delay) et le CLS (Cumulative Layout Shift).</p>
+<p>Google considère les Core Web Vitals comme signal de classement depuis 2021. Une boutique mal optimisée peut perdre jusqu\'à 30 % de son trafic organique. Les trois métriques à surveiller : LCP (Largest Contentful Paint), INP (Interaction to Next Paint) et CLS (Cumulative Layout Shift).</p>
 
-<h2>Solutions mises en œuvre</h2>
+<h2>Optimisations serveur</h2>
 <ul>
-<li>Activation du cache CCC (Combine, Compress, Cache) natif PrestaShop</li>
-<li>Configuration de Varnish ou Redis comme cache objet</li>
-<li>Optimisation des images avec le module WebP Converter</li>
-<li>Lazy loading natif pour les images hors viewport</li>
-<li>Minification CSS/JS et suppression des modules inutilisés</li>
+<li><strong>Cache CCC</strong> — activation du Combine, Compress, Cache natif PrestaShop pour CSS et JS.</li>
+<li><strong>Redis / Varnish</strong> — mise en place d\'un cache objet pour réduire les requêtes MySQL.</li>
+<li><strong>PHP 8.2 + OPcache</strong> — passage à la dernière version stable de PHP avec OPcache configuré.</li>
+<li><strong>CDN Cloudflare</strong> — distribution des assets statiques au plus proche de l\'utilisateur.</li>
 </ul>
 
-<h2>Résultats obtenus</h2>
-<p>Après application de ces optimisations sur une boutique de taille moyenne (5000 produits), les gains mesurés sont significatifs : +67% de score PageSpeed Mobile, -2.4s de temps de chargement LCP, et +23% de taux de conversion.</p>
+<h2>Optimisations front-end</h2>
+<ul>
+<li>Conversion des images en WebP avec le module <em>PrestaShop WebP Converter</em>.</li>
+<li>Attribut <code>loading="lazy"</code> sur toutes les images hors-viewport.</li>
+<li>Suppression des modules inutilisés (réduction du DOM et des requêtes SQL).</li>
+<li>Critical CSS inline pour éliminer le render-blocking.</li>
+</ul>
+
+<h2>Résultats mesurés</h2>
+<p>Sur une boutique de 5 000 références : <strong>+67 % de score PageSpeed Mobile</strong>, LCP réduit de 4,2 s à 1,8 s, et <strong>+23 % de taux de conversion</strong> sur mobile.</p>
 
 <h2>Conclusion</h2>
-<p>L\'optimisation des performances PrestaShop est un travail continu qui nécessite une approche méthodique. En combinant les optimisations serveur, les bonnes pratiques de développement et un monitoring régulier, vous pouvez maintenir votre boutique en excellente santé technique.</p>',
-                'post_excerpt' => "Découvrez les techniques avancées pour booster la vitesse de chargement de votre boutique PrestaShop et améliorer votre score PageSpeed.",
-                'post_status'  => 'publish',
-                'post_date'    => '2025-02-28 09:00:00',
-                'post_category' => [ 'PrestaShop' ],
-                'tags_input'    => [],
-                'post_tech'    => [ 'PrestaShop', 'Performance', 'PHP' ],
+<p>L\'optimisation PrestaShop est un travail méthodique qui combine réglages serveur, bonnes pratiques front-end et monitoring continu. Un audit régulier avec Lighthouse et GTmetrix permet de maintenir les acquis dans la durée.</p>',
+                'post_excerpt'       => 'Découvrez les techniques avancées pour booster la vitesse de chargement d\'une boutique PrestaShop 8 et améliorer votre score PageSpeed Mobile au-delà de 90.',
+                'post_status'        => 'publish',
+                'post_date'          => '2025-03-10 09:00:00',
+                'post_category'      => [ 'PrestaShop' ],
+                'post_tech'          => [ 'PrestaShop', 'Performance', 'PHP' ],
+                'featured_image_url' => 'https://picsum.photos/seed/prestashop-perf/800/420',
+                'featured_image_alt' => 'Tableau de bord performance boutique e-commerce PrestaShop',
             ],
+
+            // ── Article 2 : WordPress ───────────────
             [
-                'post_title'   => "WordPress Headless avec l'API REST : architecture moderne pour 2025",
-                'post_content' => '<p>Le WordPress headless représente une évolution majeure dans la façon de concevoir des sites web. En séparant le backend (WordPress) du frontend (React, Vue, Next.js), on obtient le meilleur des deux mondes : la puissance de l\'administration WordPress et la flexibilité d\'un framework JavaScript moderne.</p>
+                'post_title'         => 'Développer un thème WordPress sur-mesure avec Tailwind CSS et ACF',
+                'post_content'       => '<p>WordPress propulse encore plus de 43 % du web en 2025. Développer un thème entièrement sur-mesure — en sortant du cadre des thèmes parent — offre une maîtrise totale des performances, de l\'accessibilité et du design. Voici notre approche avec Tailwind CSS et Advanced Custom Fields.</p>
 
-<h2>Contexte et enjeux</h2>
-<p>Le modèle traditionnel WordPress monolithique présente des limites : couplage fort entre le back et le front, performances limitées par le rendu côté serveur PHP, et difficultés à maintenir une expérience omnicanale (web, mobile, IoT). Le headless répond à ces défis en décorrélant les responsabilités.</p>
-
-<h2>Stack recommandé</h2>
+<h2>Architecture du thème</h2>
+<p>Un thème WordPress professionnel repose sur une hiérarchie de fichiers bien définie. Notre structure favorise la maintenabilité et la séparation des responsabilités :</p>
 <ul>
-<li>Backend : WordPress 6.x + plugin ACF Pro pour les champs personnalisés</li>
-<li>API : WP REST API native + WPGraphQL pour les requêtes complexes</li>
-<li>Frontend : Next.js 14 avec App Router et Server Components</li>
-<li>Cache : ISR avec revalidation webhook déclenché par WordPress</li>
+<li><strong>functions.php</strong> — point d\'entrée unique, charge les modules via <code>require_once</code>.</li>
+<li><strong>inc/</strong> — modules PHP isolés : setup, enqueue, CPT, taxonomies, customizer, AJAX.</li>
+<li><strong>template-parts/</strong> — composants réutilisables (header, hero, cards, footer).</li>
+<li><strong>assets/</strong> — CSS compilé Tailwind + JavaScript vanilla/jQuery.</li>
 </ul>
+
+<h2>Tailwind CSS via CDN Play</h2>
+<p>Pour un thème portfolio sans build pipeline, Tailwind CSS Play CDN permet une intégration immédiate avec configuration inline dans <code>header.php</code>. La configuration personnalisée définit les couleurs primaires, les polices et les breakpoints spécifiques au projet.</p>
+
+<h2>Advanced Custom Fields</h2>
+<p>ACF Pro permet de créer des champs métier riches (répéteurs, galeries, relations) sans alourdir le code. Les champs sont définis programmatiquement via <code>acf_add_local_field_group()</code> pour versionner la configuration avec le thème.</p>
+
+<h2>Performance et SEO</h2>
+<p>Score Lighthouse 95+ obtenu grâce à : images WebP avec <code>srcset</code>, polices chargées avec <code>font-display: swap</code>, scripts différés via <code>defer</code> et balises meta Open Graph dynamiques.</p>
 
 <h2>Conclusion</h2>
-<p>L\'architecture WordPress headless est désormais mature et représente un excellent choix pour des projets ambitieux nécessitant performances et flexibilité.</p>',
-                'post_excerpt' => "Comment utiliser WordPress comme CMS headless avec son API REST pour alimenter des frontends React ou Vue.js en maintenant la puissance de l'administration WP.",
-                'post_status'  => 'publish',
-                'post_date'    => '2025-02-15 09:00:00',
-                'post_category' => [ 'WordPress' ],
-                'post_tech'    => [ 'WordPress', 'PHP', 'Performance' ],
+<p>Un thème WordPress sur-mesure bien architecturé est un investissement durable. Il offre des performances supérieures aux thèmes génériques et une flexibilité totale pour évoluer avec les besoins du projet.</p>',
+                'post_excerpt'       => 'Comment concevoir un thème WordPress professionnel from scratch avec Tailwind CSS et ACF, en garantissant performances, maintenabilité et score Lighthouse 95+.',
+                'post_status'        => 'publish',
+                'post_date'          => '2025-02-18 09:00:00',
+                'post_category'      => [ 'WordPress' ],
+                'post_tech'          => [ 'WordPress', 'PHP', 'Performance' ],
+                'featured_image_url' => 'https://picsum.photos/seed/wordpress-theme/800/420',
+                'featured_image_alt' => 'Développement thème WordPress sur-mesure avec Tailwind CSS',
             ],
+
+            // ── Article 3 : TMA ─────────────────────
             [
-                'post_title'   => "Symfony 7 et API Platform : créer une API REST robuste en 2025",
-                'post_content' => '<p>Symfony 7, sorti fin 2023, apporte des améliorations significatives en termes de performance et d\'ergonomie. Combiné avec API Platform 3, il offre un environnement idéal pour développer des APIs robustes et bien documentées.</p>
+                'post_title'         => 'TMA efficace : structurer la maintenance applicative avec un cadre ITIL léger',
+                'post_content'       => '<p>La Tierce Maintenance Applicative (TMA) est souvent perçue comme une prestation réactive et subie. Pourtant, une TMA structurée avec un cadre ITIL simplifié devient un véritable levier stratégique pour la pérennité d\'un système d\'information.</p>
 
-<h2>Contexte et enjeux</h2>
-<p>Le développement d\'APIs en PHP a considérablement évolué ces dernières années. Là où il fallait auparavant écrire des dizaines de controllers et serializers manuellement, API Platform automatise une grande partie de ce travail grâce aux annotations et aux ressources API.</p>
-
-<h2>Architecture recommandée</h2>
+<h2>Les trois types de maintenance</h2>
 <ul>
-<li>Installation via Symfony CLI et Composer</li>
-<li>Configuration de LexikJWTAuthenticationBundle pour l\'authentification</li>
-<li>Définition des ressources API avec les attributs PHP 8</li>
-<li>State Processors pour la logique métier complexe</li>
-<li>Tests fonctionnels avec ApiTestCase de API Platform</li>
+<li><strong>Maintenance corrective</strong> — correction des anomalies et bugs signalés en production.</li>
+<li><strong>Maintenance évolutive</strong> — développement de nouvelles fonctionnalités à périmètre contractuel.</li>
+<li><strong>Maintenance préventive</strong> — mises à jour de sécurité, dépendances et nettoyage de dette technique.</li>
 </ul>
+
+<h2>Cadre ITIL léger : les 4 piliers</h2>
+<p>Pour des projets de taille moyenne, un ITIL complet serait contre-productif. Notre framework réduit retient l\'essentiel :</p>
+<ul>
+<li><strong>Gestion des incidents</strong> — qualification sur 4 niveaux de priorité : P1 (bloquant, SLA 4 h) → P4 (mineur, SLA 5 j).</li>
+<li><strong>Gestion des changements</strong> — toute évolution passe par une revue, un test en staging et une validation client.</li>
+<li><strong>Gestion des problèmes</strong> — analyse post-incident pour identifier et éliminer les causes racines.</li>
+<li><strong>Reporting</strong> — rapport mensuel automatisé : temps passé, incidents traités, disponibilité mesurée.</li>
+</ul>
+
+<h2>Stack technique retenu</h2>
+<ul>
+<li><strong>Ticketing</strong> — Jira Service Management ou Linear selon la taille de l\'équipe.</li>
+<li><strong>Monitoring</strong> — UptimeRobot (disponibilité) + Sentry (erreurs applicatives) + alertes Slack.</li>
+<li><strong>CI/CD</strong> — déploiements automatisés via GitHub Actions pour réduire le risque humain.</li>
+</ul>
+
+<h2>Résultats concrets</h2>
+<p>Sur un contrat TMA e-commerce de 18 mois : <strong>99,7 % de disponibilité</strong>, temps de résolution P1 moyen 2,4 h (SLA 4 h), et satisfaction client 9,2/10 en fin de contrat.</p>
 
 <h2>Conclusion</h2>
-<p>Symfony 7 avec API Platform constitue l\'une des solutions les plus complètes et productives pour développer des APIs PHP en 2025.</p>',
-                'post_excerpt' => "Guide pratique pour construire une API REST production-ready avec Symfony 7 et API Platform, incluant authentification JWT, documentation OpenAPI et tests automatisés.",
-                'post_status'  => 'publish',
-                'post_date'    => '2025-02-03 09:00:00',
-                'post_category' => [ 'Symfony' ],
-                'post_tech'    => [ 'Symfony', 'PHP' ],
-            ],
-            [
-                'post_title'   => "TMA : comment structurer le maintien en condition opérationnelle d'une application",
-                'post_content' => '<p>La Tierce Maintenance Applicative (TMA) est souvent perçue comme une prestation "subie", réactive aux incidents. Pourtant, une TMA bien structurée est un levier stratégique pour la pérennité et l\'évolution d\'un système d\'information.</p>
-
-<h2>Contexte et enjeux</h2>
-<p>Un contrat TMA typique couvre la correction des anomalies, les petites évolutions, et le maintien en condition de sécurité (MCS). Sans processus clairement définis, la TMA devient rapidement ingérable : tickets mal qualifiés, priorités floues, délais non respectés, et client insatisfait.</p>
-
-<h2>Framework TMA</h2>
-<ul>
-<li>Qualification des tickets sur 4 niveaux de priorité (P1 bloquant → P4 mineur)</li>
-<li>SLA définis contractuellement : P1 = 4h, P2 = 24h, P3 = 72h, P4 = 5 jours</li>
-<li>Monitoring proactif avec UptimeRobot + alertes Slack</li>
-<li>Rapport mensuel automatisé : incidents, résolutions, temps passé</li>
-</ul>
-
-<h2>Conclusion</h2>
-<p>Structurer une TMA avec des processus clairs et des outils adaptés transforme une prestation subie en véritable valeur ajoutée.</p>',
-                'post_excerpt' => "Retour d'expérience sur la mise en place d'un contrat TMA efficace : processus ITIL, gestion des tickets, SLA, monitoring proactif et communication client.",
-                'post_status'  => 'publish',
-                'post_date'    => '2025-01-20 09:00:00',
-                'post_category' => [ 'TMA' ],
-                'post_tech'    => [ 'TMA' ],
-            ],
-            [
-                'post_title'   => "Core Web Vitals 2025 : optimiser LCP, FID et CLS sur un site WordPress",
-                'post_content' => '<p>Les Core Web Vitals sont devenus incontournables pour tout professionnel du web. En 2025, Google utilise ces métriques comme signal de classement direct.</p>
-
-<h2>Les trois métriques clés</h2>
-<p>LCP (Largest Contentful Paint) — doit être inférieur à 2.5s, FID/INP (Interaction to Next Paint) — doit être inférieur à 200ms, et CLS (Cumulative Layout Shift) — doit être inférieur à 0.1.</p>
-
-<h2>Méthodologie d\'optimisation</h2>
-<ul>
-<li>Audit initial avec PageSpeed Insights + Chrome DevTools Performance tab</li>
-<li>LCP : optimisation de l\'image hero (WebP, fetchpriority="high", preload)</li>
-<li>LCP : déchargement des fonts avec font-display: swap + preconnect</li>
-<li>INP : audit et remplacement des plugins JS lourds</li>
-<li>CLS : réservation explicite de l\'espace pour images et iframes (aspect-ratio)</li>
-</ul>
-
-<h2>Résultats</h2>
-<p>LCP final : 1.8s (vs 4.2s), CLS final : 0.04 (vs 0.28), Trafic organique : +35% en 3 mois.</p>',
-                'post_excerpt' => "Guide technique pour améliorer les Core Web Vitals de votre site WordPress : outils de diagnostic, techniques d'optimisation et résultats mesurables sur des projets réels.",
-                'post_status'  => 'publish',
-                'post_date'    => '2025-01-08 09:00:00',
-                'post_category' => [ 'Performance' ],
-                'post_tech'    => [ 'WordPress', 'Performance' ],
+<p>Structurer une TMA avec un cadre ITIL allégé, des SLA clairs et des outils adaptés transforme une prestation subie en partenariat de confiance durable.</p>',
+                'post_excerpt'       => 'Retour d\'expérience sur la mise en place d\'une TMA efficace : cadre ITIL léger, gestion des priorités, monitoring proactif et reporting mensuel automatisé.',
+                'post_status'        => 'publish',
+                'post_date'          => '2025-01-22 09:00:00',
+                'post_category'      => [ 'TMA' ],
+                'post_tech'          => [ 'TMA', 'PHP' ],
+                'featured_image_url' => 'https://picsum.photos/seed/tma-support/800/420',
+                'featured_image_alt' => 'Dashboard monitoring et maintenance applicative TMA',
             ],
         ],
 
         // ============================================
-        // SERVICES (CPT eddy_service)
+        // SERVICES (CPT eddy_service) — 4 expertises
         // ============================================
         'services' => [
+
+            // ── 1. PrestaShop ───────────────────────
             [
                 'post_title'   => 'Développement PrestaShop',
-                'post_content' => 'Création de boutiques e-commerce PrestaShop sur-mesure, développement de modules, personnalisation de thèmes et optimisation des performances. Maîtrise des versions 1.7 à 8.x. Migration de données, intégration ERP/CRM et accompagnement post-déploiement.',
-                'post_excerpt' => 'Création de boutiques e-commerce PrestaShop sur-mesure, développement de modules, personnalisation de thèmes et optimisation des performances.',
+                'post_content' => '<p>Création de boutiques e-commerce PrestaShop sur-mesure, développement de modules métier, personnalisation de thèmes et migration de données. Maîtrise des versions 1.7 à 8.x, intégration ERP/CRM (Sage, Odoo), paiement multi-prestataires et optimisation des performances (Redis, WebP, CDN). Accompagnement complet de l\'audit technique au déploiement en production.</p>',
+                'post_excerpt' => 'Boutiques e-commerce sur-mesure, modules métier, migrations et intégrations ERP/CRM. De la version 1.7 à la 8.x, avec performances optimisées (Redis, WebP, CDN).',
                 'post_status'  => 'publish',
                 'menu_order'   => 1,
+                // SVG icon path (shopping-bag Lucide)
+                'service_icon' => 'M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z M3 6h18 M16 10a4 4 0 01-8 0',
+                'service_tags' => [ 'PrestaShop 8', 'Modules', 'E-commerce', 'PHP 8' ],
             ],
-            [
-                'post_title'   => 'Développement Symfony',
-                'post_content' => "Développement d'applications web et d'APIs REST robustes avec Symfony 6/7. Architecture DDD, API Platform, tests automatisés et documentation OpenAPI intégrée. Expertise en Doctrine ORM, Messenger et Scheduler.",
-                'post_excerpt' => "Développement d'applications web et d'APIs REST robustes avec Symfony 6/7. Architecture DDD, API Platform, tests automatisés et documentation OpenAPI intégrée.",
-                'post_status'  => 'publish',
-                'menu_order'   => 2,
-            ],
+
+            // ── 2. WordPress ────────────────────────
             [
                 'post_title'   => 'Développement WordPress',
-                'post_content' => "Création de sites WordPress sur-mesure, développement de thèmes et plugins, architecture headless avec l'API REST, optimisation SEO et Core Web Vitals. Support Gutenberg et Full-Site Editing.",
-                'post_excerpt' => "Création de sites WordPress sur-mesure, développement de thèmes et plugins, architecture headless avec l'API REST, optimisation SEO et Core Web Vitals.",
+                'post_content' => '<p>Conception de sites WordPress sur-mesure — thèmes, plugins et extensions métier. Architecture headless avec l\'API REST ou WPGraphQL alimentant des frontends Next.js. Intégration Gutenberg et Full-Site Editing, optimisation SEO technique, Core Web Vitals 95+ et sécurité renforcée (Wordfence, backups automatisés). Développement de solutions multisite et WooCommerce.</p>',
+                'post_excerpt' => 'Sites et applications WordPress sur-mesure, thèmes et plugins, architecture headless, optimisation SEO et Core Web Vitals 95+. WooCommerce et multisite.',
+                'post_status'  => 'publish',
+                'menu_order'   => 2,
+                // SVG icon path (globe Lucide)
+                'service_icon' => 'M12 2a10 10 0 100 20A10 10 0 0012 2z M2 12h20 M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z',
+                'service_tags' => [ 'WordPress 6', 'Headless', 'WooCommerce', 'SEO' ],
+            ],
+
+            // ── 3. Symfony ──────────────────────────
+            [
+                'post_title'   => 'Développement Symfony',
+                'post_content' => '<p>Développement d\'applications web et d\'APIs REST robustes avec Symfony 6/7 et API Platform. Architecture hexagonale ou DDD selon la complexité du projet, authentification JWT (LexikJWTBundle), documentation OpenAPI automatique et tests d\'intégration complets avec PHPUnit et Behat. Expertise en Doctrine ORM, Messenger, Scheduler et déploiement Docker/CI-CD.</p>',
+                'post_excerpt' => 'Applications web et APIs REST avec Symfony 6/7 et API Platform. Architecture DDD, auth JWT, documentation OpenAPI et pipeline CI/CD Docker.',
                 'post_status'  => 'publish',
                 'menu_order'   => 3,
+                // SVG icon path (code-2 Lucide)
+                'service_icon' => 'M4 17l6-6-6-6 M12 19h8',
+                'service_tags' => [ 'Symfony 7', 'API Platform', 'PHP 8', 'Docker' ],
             ],
+
+            // ── 4. TMA ──────────────────────────────
             [
-                'post_title'   => 'TMA – Tierce Maintenance Applicative',
-                'post_content' => 'Prise en charge complète de la maintenance corrective, évolutive et préventive de vos applications. SLA garantis, monitoring proactif et rapports mensuels détaillés. Cadre ITIL léger, ticketing structuré.',
-                'post_excerpt' => 'Prise en charge complète de la maintenance corrective, évolutive et préventive de vos applications. SLA garantis, monitoring proactif et rapports mensuels détaillés.',
+                'post_title'   => 'TMA — Tierce Maintenance Applicative',
+                'post_content' => '<p>Prise en charge complète de la maintenance corrective, évolutive et préventive de vos applications web. SLA garantis contractuellement (P1 en 4 h), monitoring proactif 24/7 (Sentry, UptimeRobot), rapport mensuel détaillé et gestion des incidents via cadre ITIL léger. Intervention sur tout stack PHP : PrestaShop, Symfony, WordPress, Laravel. Idéal pour PME sans équipe tech interne.</p>',
+                'post_excerpt' => 'Maintenance corrective, évolutive et préventive avec SLA garantis. Monitoring 24/7, rapport mensuel et cadre ITIL léger pour tout projet PHP.',
                 'post_status'  => 'publish',
                 'menu_order'   => 4,
-            ],
-            [
-                'post_title'   => 'Intégration & Performance Web',
-                'post_content' => 'Intégration pixel-perfect HTML5/CSS3, optimisation Core Web Vitals, audit de performance et mise en conformité RGPD. Scores Lighthouse 90+ garantis. Tailwind CSS, animations accessibles.',
-                'post_excerpt' => 'Intégration pixel-perfect HTML5/CSS3, optimisation Core Web Vitals, audit de performance et mise en conformité RGPD. Scores Lighthouse 90+ garantis.',
-                'post_status'  => 'publish',
-                'menu_order'   => 5,
-            ],
-            [
-                'post_title'   => 'Conseil & Audit Technique',
-                'post_content' => "Audit de code, revue d'architecture, choix technologiques et accompagnement dans la transformation digitale. Rapports détaillés avec recommandations priorisées. Analyse de dette technique et roadmap d'amélioration.",
-                'post_excerpt' => "Audit de code, revue d'architecture, choix technologiques et accompagnement dans la transformation digitale. Rapports détaillés avec recommandations priorisées.",
-                'post_status'  => 'publish',
-                'menu_order'   => 6,
+                // SVG icon path (wrench Lucide)
+                'service_icon' => 'M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z',
+                'service_tags' => [ 'TMA', 'SLA garanti', 'Monitoring', 'ITIL' ],
             ],
         ],
 
@@ -198,8 +196,8 @@ function eddy_get_demo_content(): array {
         // ============================================
         'post_tech_terms' => [
             'PrestaShop',
-            'Symfony',
             'WordPress',
+            'Symfony',
             'PHP',
             'TMA',
             'Performance',
@@ -210,8 +208,8 @@ function eddy_get_demo_content(): array {
         // ============================================
         'categories' => [
             'PrestaShop',
-            'Symfony',
             'WordPress',
+            'Symfony',
             'TMA',
             'Performance',
         ],

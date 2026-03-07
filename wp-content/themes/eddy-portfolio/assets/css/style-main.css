@@ -455,6 +455,42 @@ h1, h2, h3, h4, h5, h6 {
   stroke: currentColor;
 }
 
+/* Service card — flex colonne pour aligner les tags en bas */
+.service-card-stacked {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tags technos dans les cards services */
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+}
+.service-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  background: rgba(15,118,110,0.08);
+  color: var(--color-primary);
+  border: 1px solid rgba(15,118,110,0.15);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.service-card:hover .service-tag {
+  background: rgba(15,118,110,0.15);
+  border-color: rgba(15,118,110,0.3);
+}
+.dark .service-tag {
+  background: rgba(20,184,166,0.1);
+  color: #5eead4;
+  border-color: rgba(20,184,166,0.2);
+}
+
 /* ── Carousel ── */
 .carousel-wrapper {
   position: relative;
