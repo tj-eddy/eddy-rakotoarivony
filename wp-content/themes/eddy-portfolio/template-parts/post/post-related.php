@@ -1,6 +1,6 @@
 <?php
 /**
- * Articles similaires (même catégorie).
+ * Articles similaires — section full-width hors du flex principal.
  *
  * @package Eddy_Portfolio
  */
@@ -18,13 +18,15 @@ $related = new WP_Query( [
 
 if ( ! $related->have_posts() ) return;
 ?>
-<div class="mt-12">
-    <h3 class="text-xl font-bold mb-6" style="color:var(--color-text)">
-        <?php esc_html_e( 'Articles similaires', 'eddy-portfolio' ); ?>
-    </h3>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <?php while ( $related->have_posts() ) : $related->the_post(); ?>
-            <?php get_template_part( 'template-parts/post/post', 'card' ); ?>
-        <?php endwhile; wp_reset_postdata(); ?>
+<section class="py-14" style="background:var(--color-bg-card);border-top:1px solid var(--color-border)" aria-labelledby="similar-title">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 id="similar-title" class="text-2xl font-extrabold mb-8" style="color:var(--color-text);font-family:'Plus Jakarta Sans',sans-serif">
+            <?php esc_html_e( 'Articles similaires', 'eddy-portfolio' ); ?>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <?php while ( $related->have_posts() ) : $related->the_post(); ?>
+                <?php get_template_part( 'template-parts/post/post', 'card' ); ?>
+            <?php endwhile; wp_reset_postdata(); ?>
+        </div>
     </div>
-</div>
+</section>

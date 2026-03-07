@@ -813,6 +813,18 @@ section {
 
 /* ── SINGLE POST PAGE ── */
 
+/* Reading progress bar */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), #14b8a6);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
 /* Breadcrumb */
 .breadcrumb {
   background: var(--color-bg-card);
@@ -829,18 +841,6 @@ section {
 
 .breadcrumb a:hover {
   text-decoration: underline;
-}
-
-/* Reading progress bar */
-.reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), #14b8a6);
-  z-index: 9999;
-  transition: width 0.1s linear;
 }
 
 /* Article Content */
