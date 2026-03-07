@@ -63,7 +63,7 @@ $services_query = new WP_Query( [
 ] );
 ?>
 <section id="services" aria-labelledby="services-title" class="py-20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- En-tête de section -->
         <div class="text-center mb-14 reveal">
@@ -82,7 +82,7 @@ $services_query = new WP_Query( [
         </div>
 
         <!-- Grille 4 services -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
 
             <?php if ( $services_query->have_posts() ) : ?>
 
@@ -101,6 +101,9 @@ $services_query = new WP_Query( [
 
                     <article class="service-card reveal service-card-stacked" style="--card-delay:<?php echo $i; ?>">
 
+                        <!-- Numéro décoratif -->
+                        <span class="service-number" aria-hidden="true"><?php echo sprintf( '%02d', $i + 1 ); ?></span>
+
                         <!-- Icône -->
                         <div class="service-icon" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
@@ -116,9 +119,20 @@ $services_query = new WP_Query( [
                         </h3>
 
                         <!-- Excerpt -->
-                        <p class="text-sm leading-relaxed mb-4" style="color:var(--color-text-muted)">
+                        <p class="text-sm leading-relaxed" style="color:var(--color-text-muted)">
                             <?php the_excerpt(); ?>
                         </p>
+
+                        <!-- Lien "En savoir plus" -->
+                        <span class="service-more" aria-hidden="true">
+                            <?php esc_html_e( 'En savoir plus', 'eddy-portfolio' ); ?>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2.5"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                                <polyline points="12 5 19 12 12 19"/>
+                            </svg>
+                        </span>
 
                         <!-- Tags tech -->
                         <div class="service-tags mt-auto flex flex-wrap gap-1.5">
@@ -164,6 +178,7 @@ $services_query = new WP_Query( [
                 foreach ( $static_services as $j => $service ) : ?>
 
                 <article class="service-card reveal service-card-stacked" style="--card-delay:<?php echo $j; ?>">
+                    <span class="service-number" aria-hidden="true"><?php echo sprintf( '%02d', $j + 1 ); ?></span>
                     <div class="service-icon" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                              viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -174,9 +189,18 @@ $services_query = new WP_Query( [
                     <h3 class="text-base font-bold mb-2" style="color:var(--color-text)">
                         <?php echo esc_html( $service['title'] ); ?>
                     </h3>
-                    <p class="text-sm leading-relaxed mb-4" style="color:var(--color-text-muted)">
+                    <p class="text-sm leading-relaxed" style="color:var(--color-text-muted)">
                         <?php echo esc_html( $service['excerpt'] ); ?>
                     </p>
+                    <span class="service-more" aria-hidden="true">
+                        <?php esc_html_e( 'En savoir plus', 'eddy-portfolio' ); ?>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2.5"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </span>
                     <div class="service-tags mt-auto flex flex-wrap gap-1.5">
                         <?php foreach ( $service['tags'] as $tag ) : ?>
                             <span class="service-tag"><?php echo esc_html( $tag ); ?></span>
