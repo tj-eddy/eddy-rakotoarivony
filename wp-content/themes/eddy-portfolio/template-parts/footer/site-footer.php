@@ -83,9 +83,9 @@ $available = get_theme_mod( 'eddy_available_freelance', true );
                 &copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php echo esc_html( $full_name ); ?> &middot;
                 <?php esc_html_e( 'Tous droits réservés', 'eddy-portfolio' ); ?>
             </p>
-            <p class="text-sm" style="color:var(--color-text-muted)">
+            <!-- <p class="text-sm" style="color:var(--color-text-muted)">
                 <?php esc_html_e( 'Développé avec WordPress · Tailwind CSS · jQuery', 'eddy-portfolio' ); ?>
-            </p>
+            </p> -->
         </div>
     </div>
 </footer>

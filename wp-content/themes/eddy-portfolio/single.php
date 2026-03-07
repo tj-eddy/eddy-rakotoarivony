@@ -118,12 +118,12 @@ $techs      = get_the_terms( get_the_ID(), 'post_tech' );
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                             X / Twitter
                         </a>
-                        <button class="share-btn" id="copy-link-btn" type="button"
+                        <!-- <button class="share-btn" id="copy-link-btn" type="button"
                                 data-url="<?php echo esc_attr( get_permalink() ); ?>"
                                 aria-label="<?php esc_attr_e( 'Copier le lien', 'eddy-portfolio' ); ?>">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                             <?php esc_html_e( 'Copier le lien', 'eddy-portfolio' ); ?>
-                        </button>
+                        </button> -->
                     </div>
                 </div>
 

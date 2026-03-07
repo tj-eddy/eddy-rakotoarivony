@@ -108,7 +108,7 @@ $all_cats = get_categories( [
 <?php endif; ?>
 
 <!-- ===== Newsletter ===== -->
-<div class="sidebar-card" style="background:rgba(15,118,110,0.05);border-color:rgba(15,118,110,0.2)">
+<!-- <div class="sidebar-card" style="background:rgba(15,118,110,0.05);border-color:rgba(15,118,110,0.2)">
     <h3 class="font-bold text-sm mb-2" style="color:var(--color-text)">
         <?php esc_html_e( 'Newsletter', 'eddy-portfolio' ); ?>
     </h3>
@@ -123,7 +123,7 @@ $all_cats = get_categories( [
             <?php esc_html_e( 'S\'abonner', 'eddy-portfolio' ); ?>
         </button>
     </div>
-</div>
+</div> -->
 
 <!-- Widgets sidebar WordPress (optionnel) -->
 <?php if ( is_active_sidebar( 'sidebar-post' ) ) : ?>

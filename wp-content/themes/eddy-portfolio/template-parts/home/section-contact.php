@@ -126,7 +126,7 @@ $map_embed     = get_theme_mod( 'eddy_contact_map_embed', '' );
             </div>
 
             <!-- Formulaire de contact WPForms -->
-            <div>
+            <div class="wpforms-wrapper">
                 <h3 class="text-xl font-bold mb-6" style="color:var(--color-text)">
                     <?php esc_html_e( 'Envoyer un message', 'eddy-portfolio' ); ?>
                 </h3>
