@@ -92,6 +92,79 @@ $(function () {
     });
   }
 
+  // ── 7a. Hero typewriter ──
+  var $typingEl = $('#hero-typing');
+  if ( $typingEl.length ) {
+    var typingTitles = [];
+    try { typingTitles = JSON.parse( $typingEl.data('titles') || '[]' ); } catch (e) {}
+    if ( typingTitles.length > 1 ) {
+      var tyIdx       = 0;
+      var tyChar      = $typingEl.text().length; // part du texte déjà affiché
+      var tyDeleting  = false;
+      var tyTimer;
+
+      function typeStep() {
+        var current = typingTitles[ tyIdx ];
+        if ( tyDeleting ) {
+          tyChar--;
+          $typingEl.text( current.substring(0, tyChar) );
+          tyTimer = setTimeout( typeStep, tyChar > 0 ? 38 : 300 );
+        } else {
+          tyChar++;
+          $typingEl.text( current.substring(0, tyChar) );
+          if ( tyChar < current.length ) {
+            tyTimer = setTimeout( typeStep, 75 );
+          } else {
+            // pause à la fin puis suppression
+            tyDeleting = true;
+            tyTimer = setTimeout( typeStep, 2200 );
+          }
+        }
+        if ( tyDeleting && tyChar === 0 ) {
+          tyDeleting = false;
+          tyIdx = ( tyIdx + 1 ) % typingTitles.length;
+          tyTimer = setTimeout( typeStep, 350 );
+        }
+      }
+
+      // Démarre après l'entrée des éléments (~1.8 s)
+      setTimeout( typeStep, 1800 );
+    }
+  }
+
+  // ── 7b. Hero stats — animation compteurs ──
+  var heroStatsAnimated = false;
+  function runHeroCounters() {
+    if ( heroStatsAnimated ) return;
+    heroStatsAnimated = true;
+    $('.hero-stat-number').each(function () {
+      var $n      = $(this);
+      var target  = parseInt( $n.data('count'), 10 );
+      var start   = Date.now();
+      var dur     = 1400;
+      (function tick() {
+        var elapsed  = Date.now() - start;
+        var progress = Math.min( elapsed / dur, 1 );
+        // easeOutCubic
+        var eased    = 1 - Math.pow( 1 - progress, 3 );
+        $n.text( Math.round( eased * target ) );
+        if ( progress < 1 ) { requestAnimationFrame( tick ); }
+      }());
+    });
+  }
+
+  if ( 'IntersectionObserver' in window && $('.hero-stats').length ) {
+    var heroStatsObs = new IntersectionObserver( function (entries) {
+      if ( entries[0].isIntersecting ) {
+        runHeroCounters();
+        heroStatsObs.disconnect();
+      }
+    }, { threshold: 0.6 } );
+    heroStatsObs.observe( $('.hero-stats')[0] );
+  } else {
+    runHeroCounters();
+  }
+
   // ── 7. Scroll reveal ──
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function (entries) {
