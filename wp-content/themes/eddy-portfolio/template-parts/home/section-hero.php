@@ -102,21 +102,21 @@ $typing_titles  = json_encode( [
         <div class="hero-item hero-stats" style="--delay:6" role="list" aria-label="Statistiques">
             <div class="hero-stat" role="listitem">
                 <div class="hero-stat-value">
-                    <span class="hero-stat-number" data-count="5">0</span><span class="hero-stat-plus">+</span>
+                    <span class="hero-stat-number" data-count="7">0</span><span class="hero-stat-plus">+</span>
                 </div>
                 <span class="hero-stat-label"><?php esc_html_e( "Années d'expérience", 'eddy-portfolio' ); ?></span>
             </div>
             <div class="hero-stat-sep" aria-hidden="true"></div>
             <div class="hero-stat" role="listitem">
                 <div class="hero-stat-value">
-                    <span class="hero-stat-number" data-count="30">0</span><span class="hero-stat-plus">+</span>
+                    <span class="hero-stat-number" data-count="10">0</span><span class="hero-stat-plus">+</span>
                 </div>
                 <span class="hero-stat-label"><?php esc_html_e( 'Projets réalisés', 'eddy-portfolio' ); ?></span>
             </div>
             <div class="hero-stat-sep" aria-hidden="true"></div>
             <div class="hero-stat" role="listitem">
                 <div class="hero-stat-value">
-                    <span class="hero-stat-number" data-count="15">0</span><span class="hero-stat-plus">+</span>
+                    <span class="hero-stat-number" data-count="6">0</span><span class="hero-stat-plus">+</span>
                 </div>
                 <span class="hero-stat-label"><?php esc_html_e( 'Clients satisfaits', 'eddy-portfolio' ); ?></span>
             </div>
